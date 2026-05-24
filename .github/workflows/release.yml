@@ -35,9 +35,12 @@ jobs:
       - name: Configure CMake
         shell: pwsh
         run: |
-          cmake -B build -S ref-projects/speech-lm-tts.cpp `
+          if (Test-Path "build/CMakeCache.txt") {
+            Remove-Item -Recurse -Force "build"
+          }
+          cmake -B build -S . `
             -DCMAKE_BUILD_TYPE=Release `
-            -DSLM_LLAMA_DIR=../llama.cpp `
+            -DSLM_LLAMA_DIR=llama.cpp `
             -DONNXRUNTIME_ROOT="${{ env.ONNXRUNTIME_ROOT }}"
 
       - name: Build Project
@@ -48,8 +51,8 @@ jobs:
       - name: Package Runtime Release
         shell: pwsh
         run: |
-          pwsh -File ref-projects/speech-lm-tts.cpp/scripts/package-runtime.ps1 `
-            -BuildDir "build/Release" `
+          pwsh -File scripts/package-runtime.ps1 `
+            -BuildDir "build" `
             -OutputDir "dist" `
             -OnnxRuntimeRoot "${{ env.ONNXRUNTIME_ROOT }}"
 
