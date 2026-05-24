@@ -15,9 +15,6 @@
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
-#ifdef _WIN32
-#include <excpt.h>
-#endif
 
 // Thread-local error reporting
 thread_local std::string g_last_error = "";
@@ -370,17 +367,7 @@ static int slm_synthesize_cpp_guard(struct slm_context * slm, const struct slm_t
 }
 
 SLM_API int slm_synthesize(struct slm_context * slm, const struct slm_tts_params * params, struct slm_audio * out) {
-#ifdef _WIN32
-    __try {
-        return slm_synthesize_cpp_guard(slm, params, out);
-    } __except(EXCEPTION_EXECUTE_HANDLER) {
-        clear_audio_output(out);
-        set_last_error("Native structured exception during synthesis. The runtime recovered instead of crashing the app.");
-        return -1;
-    }
-#else
     return slm_synthesize_cpp_guard(slm, params, out);
-#endif
 }
 
 SLM_API int slm_encode_reference(struct slm_context * slm, const char * ref_audio_path, float * out_embedding_128) {
