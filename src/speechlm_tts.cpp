@@ -15,6 +15,9 @@
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
+#ifdef _WIN32
+#include <excpt.h>
+#endif
 
 // Thread-local error reporting
 thread_local std::string g_last_error = "";
@@ -269,7 +272,7 @@ SLM_API void slm_tts_default_params(struct slm_tts_params * p) {
     }
 }
 
-SLM_API int slm_synthesize(struct slm_context * slm, const struct slm_tts_params * params, struct slm_audio * out) {
+static int slm_synthesize_impl(struct slm_context * slm, const struct slm_tts_params * params, struct slm_audio * out) {
     if (!slm || !params || !params->text || !out) {
         set_last_error("Invalid synthesize arguments: context, params, text, and out are required.");
         return -1;
@@ -337,6 +340,47 @@ SLM_API int slm_synthesize(struct slm_context * slm, const struct slm_tts_params
     out->channels = 1;
 
     return 0;
+}
+
+static void clear_audio_output(struct slm_audio * out) {
+    if (!out) {
+        return;
+    }
+    if (out->samples) {
+        free(out->samples);
+    }
+    out->samples = nullptr;
+    out->n_samples = 0;
+    out->sample_rate = 0;
+    out->channels = 0;
+}
+
+static int slm_synthesize_cpp_guard(struct slm_context * slm, const struct slm_tts_params * params, struct slm_audio * out) {
+    try {
+        return slm_synthesize_impl(slm, params, out);
+    } catch (const std::exception& e) {
+        clear_audio_output(out);
+        set_last_error(std::string("Unhandled C++ exception during synthesis: ") + e.what());
+        return -1;
+    } catch (...) {
+        clear_audio_output(out);
+        set_last_error("Unhandled unknown C++ exception during synthesis.");
+        return -1;
+    }
+}
+
+SLM_API int slm_synthesize(struct slm_context * slm, const struct slm_tts_params * params, struct slm_audio * out) {
+#ifdef _WIN32
+    __try {
+        return slm_synthesize_cpp_guard(slm, params, out);
+    } __except(EXCEPTION_EXECUTE_HANDLER) {
+        clear_audio_output(out);
+        set_last_error("Native structured exception during synthesis. The runtime recovered instead of crashing the app.");
+        return -1;
+    }
+#else
+    return slm_synthesize_cpp_guard(slm, params, out);
+#endif
 }
 
 SLM_API int slm_encode_reference(struct slm_context * slm, const char * ref_audio_path, float * out_embedding_128) {
