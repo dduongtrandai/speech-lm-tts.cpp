@@ -49,6 +49,13 @@ jobs:
           if (Test-Path "build") {
             Remove-Item -Recurse -Force "build"
           }
+
+          # Fallback for older workflow runs / forks that do not have the dedicated checkout step.
+          if (-not (Test-Path "llama.cpp/CMakeLists.txt") -and -not (Test-Path "llama/CMakeLists.txt")) {
+            Write-Host "llama.cpp source not found. Cloning ggml-org/llama.cpp as fallback..."
+            git clone --depth 1 https://github.com/ggml-org/llama.cpp.git llama.cpp
+          }
+
           $llamaDir = ""
           if (Test-Path "llama.cpp/CMakeLists.txt") {
             $llamaDir = "llama.cpp"
