@@ -73,7 +73,11 @@ target_link_libraries(speechlm-tts-core PUBLIC
 add_library(speechlm-tts SHARED
     src/speechlm_tts.cpp
 )
-target_link_libraries(speechlm-tts PRIVATE speechlm-tts-core)
+target_link_libraries(speechlm-tts PUBLIC speechlm-tts-core)
+target_include_directories(speechlm-tts PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
 # Export options for shared library on Windows
 if(MSVC)
