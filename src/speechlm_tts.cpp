@@ -14,6 +14,7 @@
 #include <cctype>
 #include <cstring>
 #include <cstdlib>
+#include <cmath>
 
 // Thread-local error reporting
 thread_local std::string g_last_error = "";
@@ -22,29 +23,83 @@ static void set_last_error(const std::string& err) {
     g_last_error = err;
 }
 
-static bool parse_voice_embedding_from_json(const std::string& voices_json, const std::string& voice_id, std::vector<float>& out_embedding) {
-    out_embedding.clear();
+static std::string escape_regex(const std::string& text) {
+    std::string escaped;
+    escaped.reserve(text.size() * 2);
+    for (char ch : text) {
+        switch (ch) {
+            case '\\': case '.': case '^': case '$': case '|': case '?':
+            case '*': case '+': case '(': case ')': case '[': case ']':
+            case '{': case '}':
+                escaped.push_back('\\');
+                break;
+            default:
+                break;
+        }
+        escaped.push_back(ch);
+    }
+    return escaped;
+}
 
-    const std::string voice_pattern = "\"" + voice_id + "\"[^\\}]*\"(embedding|codes)\"\\s*:\\s*\\[([^\\]]*)\\]";
-    const std::regex re(voice_pattern);
+static bool parse_json_string_field(const std::string& json, const std::string& key, std::string& out_value) {
+    const std::regex re("\"" + escape_regex(key) + "\"\\s*:\\s*\"([^\"]*)\"");
     std::smatch m;
-    if (!std::regex_search(voices_json, m, re)) {
+    if (!std::regex_search(json, m, re)) {
+        return false;
+    }
+    out_value = m[1].str();
+    return true;
+}
+
+static bool parse_numeric_array_after_key(const std::string& json, size_t object_pos, std::vector<float>& out_values) {
+    const size_t codes_pos = json.find("\"codes\"", object_pos);
+    const size_t embedding_pos = json.find("\"embedding\"", object_pos);
+    size_t field_pos = std::string::npos;
+    if (codes_pos != std::string::npos && embedding_pos != std::string::npos) {
+        field_pos = std::min(codes_pos, embedding_pos);
+    } else {
+        field_pos = codes_pos != std::string::npos ? codes_pos : embedding_pos;
+    }
+    if (field_pos == std::string::npos) {
         return false;
     }
 
-    const std::string arr = m[2].str();
-    std::stringstream ss(arr);
+    const size_t arr_start = json.find('[', field_pos);
+    const size_t arr_end = json.find(']', arr_start);
+    if (arr_start == std::string::npos || arr_end == std::string::npos) {
+        return false;
+    }
+
+    out_values.clear();
+    std::stringstream ss(json.substr(arr_start + 1, arr_end - arr_start - 1));
     std::string token;
     while (std::getline(ss, token, ',')) {
         try {
-            out_embedding.push_back(std::stof(token));
+            out_values.push_back(std::stof(token));
         } catch (...) {
             return false;
         }
     }
+    return !out_values.empty();
+}
+
+static bool parse_voice_embedding_from_json(const std::string& voices_json, const std::string& voice_id, std::vector<float>& out_embedding) {
+    out_embedding.clear();
+
+    const std::string quoted_id = "\"" + voice_id + "\"";
+    const size_t object_pos = voices_json.find(quoted_id);
+    if (object_pos == std::string::npos) {
+        return false;
+    }
+
+    if (!parse_numeric_array_after_key(voices_json, object_pos, out_embedding)) {
+        return false;
+    }
 
     return out_embedding.size() == 128;
 }
+
+static bool set_first_available_voice(struct slm_context * slm);
 
 enum class SlmProfile {
     NEUTTS_AIR_V1,
@@ -62,6 +117,28 @@ struct slm_context {
 
     std::string voices_json = "";
 };
+
+static void normalize_output_level(std::vector<float>& audio) {
+    float peak = 0.0f;
+    for (float sample : audio) {
+        if (std::isfinite(sample)) {
+            peak = std::max(peak, std::abs(sample));
+        }
+    }
+
+    if (peak < 1.0e-5f || peak >= 0.80f) {
+        return;
+    }
+
+    const float gain = std::min(0.80f / peak, 12.0f);
+    for (float& sample : audio) {
+        if (!std::isfinite(sample)) {
+            sample = 0.0f;
+        } else {
+            sample = std::clamp(sample * gain, -1.0f, 1.0f);
+        }
+    }
+}
 
 SLM_API const char * slm_version(void) {
     return "0.1.0";
@@ -152,6 +229,18 @@ SLM_API struct slm_context * slm_init(const struct slm_init_params * params) {
             std::stringstream buffer;
             buffer << fs.rdbuf();
             ctx->voices_json = buffer.str();
+
+            std::string default_voice;
+            if (parse_json_string_field(ctx->voices_json, "default_voice", default_voice)) {
+                std::vector<float> emb;
+                if (parse_voice_embedding_from_json(ctx->voices_json, default_voice, emb)) {
+                    ctx->current_voice_id = default_voice;
+                    ctx->current_voice_embedding = std::move(emb);
+                }
+            }
+            if (ctx->current_voice_embedding.empty()) {
+                set_first_available_voice(ctx.get());
+            }
         }
     }
 
@@ -232,6 +321,8 @@ SLM_API int slm_synthesize(struct slm_context * slm, const struct slm_tts_params
         set_last_error("Synthesis pipeline failed or generated empty audio.");
         return -1;
     }
+
+    normalize_output_level(out_audio);
 
     // Allocate samples on the heap (using malloc to match standard C free)
     out->samples = (float*)malloc(out_audio.size() * sizeof(float));
@@ -320,4 +411,27 @@ SLM_API int slm_set_preset_voice(struct slm_context * slm, const char * voice_id
 
     set_last_error("Failed to find voice embedding/codes[128] for voice ID: " + std::string(voice_id));
     return -1;
+}
+
+static bool set_first_available_voice(struct slm_context * slm) {
+    if (!slm || slm->voices_json.empty()) {
+        return false;
+    }
+
+    const std::regex preset_re("\"([^\"]+)\"\\s*:\\s*\\{[^\\}]*\"(?:embedding|codes)\"\\s*:");
+    auto begin = std::sregex_iterator(slm->voices_json.begin(), slm->voices_json.end(), preset_re);
+    auto end = std::sregex_iterator();
+    for (auto it = begin; it != end; ++it) {
+        std::string id = (*it)[1].str();
+        if (id == "meta" || id == "presets") {
+            continue;
+        }
+        std::vector<float> emb;
+        if (parse_voice_embedding_from_json(slm->voices_json, id, emb)) {
+            slm->current_voice_id = id;
+            slm->current_voice_embedding = std::move(emb);
+            return true;
+        }
+    }
+    return false;
 }

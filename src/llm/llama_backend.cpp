@@ -1,8 +1,17 @@
 #include "llama_backend.h"
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib>
+#include <cstdio>
 
 bool LlamaBackend::backend_initialized = false;
+
+static void quiet_llama_log_callback(enum ggml_log_level level, const char * text, void * user_data) {
+    (void)user_data;
+    if (level >= GGML_LOG_LEVEL_ERROR && text) {
+        fputs(text, stderr);
+    }
+}
 
 LlamaBackend::LlamaBackend() {}
 
@@ -16,6 +25,10 @@ bool LlamaBackend::initialize(const LlamaBackendParams& params) {
     n_ctx_val = params.n_ctx;
 
     if (!backend_initialized) {
+        const char * verbose = std::getenv("SLM_TTS_VERBOSE");
+        if (!verbose || std::string(verbose) != "1") {
+            llama_log_set(quiet_llama_log_callback, nullptr);
+        }
         ggml_backend_load_all();
         backend_initialized = true;
     }
