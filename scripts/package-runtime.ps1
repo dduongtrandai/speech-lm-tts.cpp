@@ -37,7 +37,10 @@ function Resolve-BuildArtifactPath {
     $candidates = @(
         (Join-Path $BaseDir $Filename),
         (Join-Path (Join-Path $BaseDir "Release") $Filename),
-        (Join-Path (Join-Path $BaseDir "RelWithDebInfo") $Filename)
+        (Join-Path (Join-Path $BaseDir "RelWithDebInfo") $Filename),
+        (Join-Path (Join-Path (Join-Path $BaseDir "bin") "Release") $Filename),
+        (Join-Path (Join-Path (Join-Path $BaseDir "bin") "RelWithDebInfo") $Filename),
+        (Join-Path (Join-Path $BaseDir "bin") $Filename)
     )
 
     foreach ($p in $candidates) {
@@ -45,7 +48,28 @@ function Resolve-BuildArtifactPath {
             return $p
         }
     }
+
+    $recursiveHit = Get-ChildItem -Path $BaseDir -Filter $Filename -File -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($recursiveHit) {
+        return $recursiveHit.FullName
+    }
+
     return ""
+}
+
+function Copy-RuntimeDll {
+    param(
+        [string]$SourcePath,
+        [string]$DestinationDir
+    )
+
+    if (-not $SourcePath -or -not (Test-Path $SourcePath)) {
+        return
+    }
+
+    $dest = Join-Path $DestinationDir (Split-Path $SourcePath -Leaf)
+    Write-Host "Copying runtime dependency: $SourcePath"
+    Copy-Item $SourcePath $dest -Force
 }
 
 function Resolve-FirstExistingPath {
@@ -86,6 +110,8 @@ if ($OnnxRuntimeRoot) {
 $OrtCandidates += (Join-Path $BuildDir "onnxruntime.dll")
 $OrtCandidates += (Join-Path (Join-Path $BuildDir "Release") "onnxruntime.dll")
 $OrtCandidates += (Join-Path (Join-Path $BuildDir "RelWithDebInfo") "onnxruntime.dll")
+$OrtCandidates += (Join-Path (Join-Path (Join-Path $BuildDir "bin") "Release") "onnxruntime.dll")
+$OrtCandidates += (Join-Path (Join-Path (Join-Path $BuildDir "bin") "RelWithDebInfo") "onnxruntime.dll")
 
 $OrtDllSrc = Resolve-FirstExistingPath -Candidates $OrtCandidates
 if (-not $OrtDllSrc) {
@@ -103,13 +129,44 @@ if (-not $OrtDllSrc) {
 Write-Host "Copying ONNX Runtime DLL from: $OrtDllSrc"
 Copy-Item $OrtDllSrc $StagingDir
 
-# Copy optional llama.cpp shared DLLs (like llama.dll, ggml.dll if built as shared)
-foreach ($dll in @("llama.dll", "ggml.dll")) {
-    $src = Join-Path $BuildDir $dll
-    if (Test-Path $src) {
-        Write-Host "Copying llama.cpp DLL: $dll"
-        Copy-Item $src $StagingDir
+# Copy llama.cpp shared DLLs if the build produced them. Visual Studio builds from
+# llama.cpp usually place these under build/bin/Release, not the build root.
+$LlamaDllPath = Resolve-BuildArtifactPath -BaseDir $BuildDir -Filename "llama.dll"
+if ($LlamaDllPath) {
+    Copy-RuntimeDll -SourcePath $LlamaDllPath -DestinationDir $StagingDir
+
+    $dependencyRoots = @(
+        (Split-Path $LlamaDllPath -Parent),
+        $BuildDir,
+        (Join-Path $BuildDir "Release"),
+        (Join-Path $BuildDir "RelWithDebInfo"),
+        (Join-Path (Join-Path (Join-Path $BuildDir "bin") "Release") ""),
+        (Join-Path (Join-Path (Join-Path $BuildDir "bin") "RelWithDebInfo") "")
+    ) | Where-Object { $_ -and (Test-Path $_) } | Select-Object -Unique
+
+    $dependencyNames = @(
+        "ggml.dll",
+        "ggml-base.dll",
+        "ggml-cpu.dll",
+        "ggml-blas.dll",
+        "ggml-rpc.dll"
+    )
+
+    foreach ($root in $dependencyRoots) {
+        foreach ($name in $dependencyNames) {
+            $candidate = Join-Path $root $name
+            if (Test-Path $candidate) {
+                Copy-RuntimeDll -SourcePath $candidate -DestinationDir $StagingDir
+            }
+        }
     }
+
+    $ggmlDlls = Get-ChildItem -Path $BuildDir -Filter "ggml*.dll" -File -Recurse -ErrorAction SilentlyContinue
+    foreach ($ggmlDll in $ggmlDlls) {
+        Copy-RuntimeDll -SourcePath $ggmlDll.FullName -DestinationDir $StagingDir
+    }
+} else {
+    Write-Host "llama.dll was not found under '$BuildDir'; assuming llama.cpp was linked statically."
 }
 
 # Copy LICENSE files if they exist
