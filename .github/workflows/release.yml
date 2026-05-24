@@ -1,0 +1,63 @@
+name: Release SpeechLM TTS CPU Runtime
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    name: Build and Package CPU Release
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup MSBuild and Visual Studio Developer Command Prompt
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Install ONNX Runtime SDK (v1.17.1)
+        shell: pwsh
+        run: |
+          $Url = "https://github.com/microsoft/onnxruntime/releases/download/v1.17.1/onnxruntime-win-x64-1.17.1.zip"
+          $ZipFile = "onnxruntime-win-x64-1.17.1.zip"
+          Write-Host "Downloading ONNX Runtime SDK from $Url..."
+          Invoke-WebRequest -Uri $Url -OutFile $ZipFile
+          Write-Host "Extracting ONNX Runtime SDK..."
+          Expand-Archive -Path $ZipFile -DestinationPath "ort_sdk"
+          $OrtRoot = Resolve-Path "ort_sdk/onnxruntime-win-x64-1.17.1"
+          echo "ONNXRUNTIME_ROOT=$OrtRoot" >> $env:GITHUB_ENV
+          Write-Host "ONNX Runtime SDK successfully installed at $OrtRoot"
+
+      - name: Configure CMake
+        shell: pwsh
+        run: |
+          cmake -B build -S ref-projects/speech-lm-tts.cpp `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DSLM_LLAMA_DIR=../llama.cpp `
+            -DONNXRUNTIME_ROOT="${{ env.ONNXRUNTIME_ROOT }}"
+
+      - name: Build Project
+        shell: pwsh
+        run: |
+          cmake --build build --config Release --parallel
+
+      - name: Package Runtime Release
+        shell: pwsh
+        run: |
+          pwsh -File ref-projects/speech-lm-tts.cpp/scripts/package-runtime.ps1 `
+            -BuildDir "build/Release" `
+            -OutputDir "dist" `
+            -OnnxRuntimeRoot "${{ env.ONNXRUNTIME_ROOT }}"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/speech-lm-tts-win-cpu.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,1673 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/"
+    found: "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      MSBuild version 17.14.14+a129329f1 for .NET Framework
+      Build started 5/24/2026 6:59:31 PM.
+      
+      Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      Done Building Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj" (default targets) -- FAILED.
+      
+      Build FAILED.
+      
+      "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj" (default target) (1) ->
+      (ClCompile target) -> 
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      
+          0 Warning(s)
+          1 Error(s)
+      
+      Time Elapsed 00:00:00.60
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/"
+    found: "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      MSBuild version 17.14.14+a129329f1 for .NET Framework
+      Build started 5/24/2026 6:59:32 PM.
+      
+      Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdC.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdC.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TC /FC /errorReport:queue CMakeCCompilerId.c
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      Done Building Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj" (default targets) -- FAILED.
+      
+      Build FAILED.
+      
+      "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj" (default target) (1) ->
+      (ClCompile target) -> 
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdC\\CompilerIdC.vcxproj]
+      
+          0 Warning(s)
+          1 Error(s)
+      
+      Time Elapsed 00:00:00.74
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Git/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/"
+      - "C:/Program Files/eSpeak NG/"
+      - "C:/Users/daidu/AppData/Local/agy/bin/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/daidu/miniconda3/"
+      - "C:/Users/daidu/miniconda3/Scripts/"
+      - "C:/Users/daidu/miniconda3/Library/bin/"
+      - "C:/Users/daidu/.lmstudio/bin/"
+      - "C:/Users/daidu/AppData/Roaming/npm/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/"
+      - "C:/Users/daidu/.local/bin/"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link.com"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link.exe"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link"
+      - "C:/Windows/System32/link.com"
+      - "C:/Windows/System32/link.exe"
+      - "C:/Windows/System32/link"
+      - "C:/Windows/link.com"
+      - "C:/Windows/link.exe"
+      - "C:/Windows/link"
+      - "C:/Windows/System32/wbem/link.com"
+      - "C:/Windows/System32/wbem/link.exe"
+      - "C:/Windows/System32/wbem/link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link"
+      - "C:/Windows/System32/OpenSSH/link.com"
+      - "C:/Windows/System32/OpenSSH/link.exe"
+      - "C:/Windows/System32/OpenSSH/link"
+      - "C:/Program Files/Git/cmd/link.com"
+      - "C:/Program Files/Git/cmd/link.exe"
+      - "C:/Program Files/Git/cmd/link"
+      - "C:/Program Files/Git/bin/link.com"
+      - "C:/Program Files/Git/bin/link.exe"
+      - "C:/Program Files/Git/bin/link"
+      - "C:/Program Files/nodejs/link.com"
+      - "C:/Program Files/nodejs/link.exe"
+      - "C:/Program Files/nodejs/link"
+      - "C:/Program Files/Docker/Docker/resources/bin/link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/link"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link.com"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link.exe"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link"
+      - "C:/Program Files/cursor/resources/app/bin/link.com"
+      - "C:/Program Files/cursor/resources/app/bin/link.exe"
+      - "C:/Program Files/cursor/resources/app/bin/link"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link.com"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link.exe"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link"
+      - "C:/Program Files/eSpeak NG/link.com"
+      - "C:/Program Files/eSpeak NG/link.exe"
+      - "C:/Program Files/eSpeak NG/link"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link"
+      - "C:/Users/daidu/miniconda3/link.com"
+      - "C:/Users/daidu/miniconda3/link.exe"
+      - "C:/Users/daidu/miniconda3/link"
+      - "C:/Users/daidu/miniconda3/Scripts/link.com"
+      - "C:/Users/daidu/miniconda3/Scripts/link.exe"
+      - "C:/Users/daidu/miniconda3/Scripts/link"
+      - "C:/Users/daidu/miniconda3/Library/bin/link.com"
+      - "C:/Users/daidu/miniconda3/Library/bin/link.exe"
+      - "C:/Users/daidu/miniconda3/Library/bin/link"
+      - "C:/Users/daidu/.lmstudio/bin/link.com"
+      - "C:/Users/daidu/.lmstudio/bin/link.exe"
+      - "C:/Users/daidu/.lmstudio/bin/link"
+      - "C:/Users/daidu/AppData/Roaming/npm/link.com"
+      - "C:/Users/daidu/AppData/Roaming/npm/link.exe"
+      - "C:/Users/daidu/AppData/Roaming/npm/link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link"
+      - "C:/Users/daidu/.local/bin/link.com"
+      - "C:/Users/daidu/.local/bin/link.exe"
+      - "C:/Users/daidu/.local/bin/link"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link.com"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link.exe"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link.com"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link.exe"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Git/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/"
+      - "C:/Program Files/eSpeak NG/"
+      - "C:/Users/daidu/AppData/Local/agy/bin/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/daidu/miniconda3/"
+      - "C:/Users/daidu/miniconda3/Scripts/"
+      - "C:/Users/daidu/miniconda3/Library/bin/"
+      - "C:/Users/daidu/.lmstudio/bin/"
+      - "C:/Users/daidu/AppData/Roaming/npm/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/"
+      - "C:/Users/daidu/.local/bin/"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lld-link.com"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lld-link.exe"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/Git/bin/lld-link.com"
+      - "C:/Program Files/Git/bin/lld-link.exe"
+      - "C:/Program Files/Git/bin/lld-link"
+      - "C:/Program Files/nodejs/lld-link.com"
+      - "C:/Program Files/nodejs/lld-link.exe"
+      - "C:/Program Files/nodejs/lld-link"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lld-link.com"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lld-link.exe"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lld-link"
+      - "C:/Program Files/cursor/resources/app/bin/lld-link.com"
+      - "C:/Program Files/cursor/resources/app/bin/lld-link.exe"
+      - "C:/Program Files/cursor/resources/app/bin/lld-link"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lld-link.com"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lld-link.exe"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lld-link"
+      - "C:/Program Files/eSpeak NG/lld-link.com"
+      - "C:/Program Files/eSpeak NG/lld-link.exe"
+      - "C:/Program Files/eSpeak NG/lld-link"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/daidu/miniconda3/lld-link.com"
+      - "C:/Users/daidu/miniconda3/lld-link.exe"
+      - "C:/Users/daidu/miniconda3/lld-link"
+      - "C:/Users/daidu/miniconda3/Scripts/lld-link.com"
+      - "C:/Users/daidu/miniconda3/Scripts/lld-link.exe"
+      - "C:/Users/daidu/miniconda3/Scripts/lld-link"
+      - "C:/Users/daidu/miniconda3/Library/bin/lld-link.com"
+      - "C:/Users/daidu/miniconda3/Library/bin/lld-link.exe"
+      - "C:/Users/daidu/miniconda3/Library/bin/lld-link"
+      - "C:/Users/daidu/.lmstudio/bin/lld-link.com"
+      - "C:/Users/daidu/.lmstudio/bin/lld-link.exe"
+      - "C:/Users/daidu/.lmstudio/bin/lld-link"
+      - "C:/Users/daidu/AppData/Roaming/npm/lld-link.com"
+      - "C:/Users/daidu/AppData/Roaming/npm/lld-link.exe"
+      - "C:/Users/daidu/AppData/Roaming/npm/lld-link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lld-link"
+      - "C:/Users/daidu/.local/bin/lld-link.com"
+      - "C:/Users/daidu/.local/bin/lld-link.exe"
+      - "C:/Users/daidu/.local/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lld-link"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lld-link"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lld-link.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lld-link.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Git/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/"
+      - "C:/Program Files/eSpeak NG/"
+      - "C:/Users/daidu/AppData/Local/agy/bin/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/daidu/miniconda3/"
+      - "C:/Users/daidu/miniconda3/Scripts/"
+      - "C:/Users/daidu/miniconda3/Library/bin/"
+      - "C:/Users/daidu/.lmstudio/bin/"
+      - "C:/Users/daidu/AppData/Roaming/npm/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/"
+      - "C:/Users/daidu/.local/bin/"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link.com"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link.exe"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link"
+      - "C:/Windows/System32/link.com"
+      - "C:/Windows/System32/link.exe"
+      - "C:/Windows/System32/link"
+      - "C:/Windows/link.com"
+      - "C:/Windows/link.exe"
+      - "C:/Windows/link"
+      - "C:/Windows/System32/wbem/link.com"
+      - "C:/Windows/System32/wbem/link.exe"
+      - "C:/Windows/System32/wbem/link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link"
+      - "C:/Windows/System32/OpenSSH/link.com"
+      - "C:/Windows/System32/OpenSSH/link.exe"
+      - "C:/Windows/System32/OpenSSH/link"
+      - "C:/Program Files/Git/cmd/link.com"
+      - "C:/Program Files/Git/cmd/link.exe"
+      - "C:/Program Files/Git/cmd/link"
+      - "C:/Program Files/Git/bin/link.com"
+      - "C:/Program Files/Git/bin/link.exe"
+      - "C:/Program Files/Git/bin/link"
+      - "C:/Program Files/nodejs/link.com"
+      - "C:/Program Files/nodejs/link.exe"
+      - "C:/Program Files/nodejs/link"
+      - "C:/Program Files/Docker/Docker/resources/bin/link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/link"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link.com"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link.exe"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link"
+      - "C:/Program Files/cursor/resources/app/bin/link.com"
+      - "C:/Program Files/cursor/resources/app/bin/link.exe"
+      - "C:/Program Files/cursor/resources/app/bin/link"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link.com"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link.exe"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link"
+      - "C:/Program Files/eSpeak NG/link.com"
+      - "C:/Program Files/eSpeak NG/link.exe"
+      - "C:/Program Files/eSpeak NG/link"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link"
+      - "C:/Users/daidu/miniconda3/link.com"
+      - "C:/Users/daidu/miniconda3/link.exe"
+      - "C:/Users/daidu/miniconda3/link"
+      - "C:/Users/daidu/miniconda3/Scripts/link.com"
+      - "C:/Users/daidu/miniconda3/Scripts/link.exe"
+      - "C:/Users/daidu/miniconda3/Scripts/link"
+      - "C:/Users/daidu/miniconda3/Library/bin/link.com"
+      - "C:/Users/daidu/miniconda3/Library/bin/link.exe"
+      - "C:/Users/daidu/miniconda3/Library/bin/link"
+      - "C:/Users/daidu/.lmstudio/bin/link.com"
+      - "C:/Users/daidu/.lmstudio/bin/link.exe"
+      - "C:/Users/daidu/.lmstudio/bin/link"
+      - "C:/Users/daidu/AppData/Roaming/npm/link.com"
+      - "C:/Users/daidu/AppData/Roaming/npm/link.exe"
+      - "C:/Users/daidu/AppData/Roaming/npm/link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link"
+      - "C:/Users/daidu/.local/bin/link.com"
+      - "C:/Users/daidu/.local/bin/link.exe"
+      - "C:/Users/daidu/.local/bin/link"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link.com"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link.exe"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link.com"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link.exe"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_MT"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mt"
+    candidate_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Git/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/"
+      - "C:/Program Files/eSpeak NG/"
+      - "C:/Users/daidu/AppData/Local/agy/bin/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/daidu/miniconda3/"
+      - "C:/Users/daidu/miniconda3/Scripts/"
+      - "C:/Users/daidu/miniconda3/Library/bin/"
+      - "C:/Users/daidu/.lmstudio/bin/"
+      - "C:/Users/daidu/AppData/Roaming/npm/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/"
+      - "C:/Users/daidu/.local/bin/"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/mt.com"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/mt.exe"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/mt"
+      - "C:/Windows/System32/mt.com"
+      - "C:/Windows/System32/mt.exe"
+      - "C:/Windows/System32/mt"
+      - "C:/Windows/mt.com"
+      - "C:/Windows/mt.exe"
+      - "C:/Windows/mt"
+      - "C:/Windows/System32/wbem/mt.com"
+      - "C:/Windows/System32/wbem/mt.exe"
+      - "C:/Windows/System32/wbem/mt"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mt"
+      - "C:/Windows/System32/OpenSSH/mt.com"
+      - "C:/Windows/System32/OpenSSH/mt.exe"
+      - "C:/Windows/System32/OpenSSH/mt"
+      - "C:/Program Files/Git/cmd/mt.com"
+      - "C:/Program Files/Git/cmd/mt.exe"
+      - "C:/Program Files/Git/cmd/mt"
+      - "C:/Program Files/Git/bin/mt.com"
+      - "C:/Program Files/Git/bin/mt.exe"
+      - "C:/Program Files/Git/bin/mt"
+      - "C:/Program Files/nodejs/mt.com"
+      - "C:/Program Files/nodejs/mt.exe"
+      - "C:/Program Files/nodejs/mt"
+      - "C:/Program Files/Docker/Docker/resources/bin/mt.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/mt.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/mt"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/mt.com"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/mt.exe"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/mt"
+      - "C:/Program Files/cursor/resources/app/bin/mt.com"
+      - "C:/Program Files/cursor/resources/app/bin/mt.exe"
+      - "C:/Program Files/cursor/resources/app/bin/mt"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/mt.com"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/mt.exe"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/mt"
+      - "C:/Program Files/eSpeak NG/mt.com"
+      - "C:/Program Files/eSpeak NG/mt.exe"
+      - "C:/Program Files/eSpeak NG/mt"
+      - "C:/Users/daidu/AppData/Local/agy/bin/mt.com"
+      - "C:/Users/daidu/AppData/Local/agy/bin/mt.exe"
+      - "C:/Users/daidu/AppData/Local/agy/bin/mt"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/mt.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/mt.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/mt"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/mt.com"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/mt.exe"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/mt"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/mt.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/mt.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/mt"
+      - "C:/Users/daidu/miniconda3/mt.com"
+      - "C:/Users/daidu/miniconda3/mt.exe"
+      - "C:/Users/daidu/miniconda3/mt"
+      - "C:/Users/daidu/miniconda3/Scripts/mt.com"
+      - "C:/Users/daidu/miniconda3/Scripts/mt.exe"
+      - "C:/Users/daidu/miniconda3/Scripts/mt"
+      - "C:/Users/daidu/miniconda3/Library/bin/mt.com"
+      - "C:/Users/daidu/miniconda3/Library/bin/mt.exe"
+      - "C:/Users/daidu/miniconda3/Library/bin/mt"
+      - "C:/Users/daidu/.lmstudio/bin/mt.com"
+      - "C:/Users/daidu/.lmstudio/bin/mt.exe"
+      - "C:/Users/daidu/.lmstudio/bin/mt"
+      - "C:/Users/daidu/AppData/Roaming/npm/mt.com"
+      - "C:/Users/daidu/AppData/Roaming/npm/mt.exe"
+      - "C:/Users/daidu/AppData/Roaming/npm/mt"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/mt.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/mt.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/mt"
+      - "C:/Users/daidu/.local/bin/mt.com"
+      - "C:/Users/daidu/.local/bin/mt.exe"
+      - "C:/Users/daidu/.local/bin/mt"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/mt.com"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/mt.exe"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/mt"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/mt.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/mt.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/mt"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/mt.com"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/mt.exe"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/mt"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/mt.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/mt.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/mt"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lib"
+    candidate_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Git/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/"
+      - "C:/Program Files/eSpeak NG/"
+      - "C:/Users/daidu/AppData/Local/agy/bin/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/daidu/miniconda3/"
+      - "C:/Users/daidu/miniconda3/Scripts/"
+      - "C:/Users/daidu/miniconda3/Library/bin/"
+      - "C:/Users/daidu/.lmstudio/bin/"
+      - "C:/Users/daidu/AppData/Roaming/npm/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/"
+      - "C:/Users/daidu/.local/bin/"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lib.com"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lib.exe"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lib"
+      - "C:/Windows/System32/lib.com"
+      - "C:/Windows/System32/lib.exe"
+      - "C:/Windows/System32/lib"
+      - "C:/Windows/lib.com"
+      - "C:/Windows/lib.exe"
+      - "C:/Windows/lib"
+      - "C:/Windows/System32/wbem/lib.com"
+      - "C:/Windows/System32/wbem/lib.exe"
+      - "C:/Windows/System32/wbem/lib"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lib.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lib.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lib"
+      - "C:/Windows/System32/OpenSSH/lib.com"
+      - "C:/Windows/System32/OpenSSH/lib.exe"
+      - "C:/Windows/System32/OpenSSH/lib"
+      - "C:/Program Files/Git/cmd/lib.com"
+      - "C:/Program Files/Git/cmd/lib.exe"
+      - "C:/Program Files/Git/cmd/lib"
+      - "C:/Program Files/Git/bin/lib.com"
+      - "C:/Program Files/Git/bin/lib.exe"
+      - "C:/Program Files/Git/bin/lib"
+      - "C:/Program Files/nodejs/lib.com"
+      - "C:/Program Files/nodejs/lib.exe"
+      - "C:/Program Files/nodejs/lib"
+      - "C:/Program Files/Docker/Docker/resources/bin/lib.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/lib.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/lib"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lib.com"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lib.exe"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lib"
+      - "C:/Program Files/cursor/resources/app/bin/lib.com"
+      - "C:/Program Files/cursor/resources/app/bin/lib.exe"
+      - "C:/Program Files/cursor/resources/app/bin/lib"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lib.com"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lib.exe"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lib"
+      - "C:/Program Files/eSpeak NG/lib.com"
+      - "C:/Program Files/eSpeak NG/lib.exe"
+      - "C:/Program Files/eSpeak NG/lib"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lib.com"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lib.exe"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lib"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lib.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lib.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lib"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lib.com"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lib.exe"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lib"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lib.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lib.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lib"
+      - "C:/Users/daidu/miniconda3/lib.com"
+      - "C:/Users/daidu/miniconda3/lib.exe"
+      - "C:/Users/daidu/miniconda3/lib"
+      - "C:/Users/daidu/miniconda3/Scripts/lib.com"
+      - "C:/Users/daidu/miniconda3/Scripts/lib.exe"
+      - "C:/Users/daidu/miniconda3/Scripts/lib"
+      - "C:/Users/daidu/miniconda3/Library/bin/lib.com"
+      - "C:/Users/daidu/miniconda3/Library/bin/lib.exe"
+      - "C:/Users/daidu/miniconda3/Library/bin/lib"
+      - "C:/Users/daidu/.lmstudio/bin/lib.com"
+      - "C:/Users/daidu/.lmstudio/bin/lib.exe"
+      - "C:/Users/daidu/.lmstudio/bin/lib"
+      - "C:/Users/daidu/AppData/Roaming/npm/lib.com"
+      - "C:/Users/daidu/AppData/Roaming/npm/lib.exe"
+      - "C:/Users/daidu/AppData/Roaming/npm/lib"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lib.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lib.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lib"
+      - "C:/Users/daidu/.local/bin/lib.com"
+      - "C:/Users/daidu/.local/bin/lib.exe"
+      - "C:/Users/daidu/.local/bin/lib"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lib.com"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lib.exe"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lib"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lib.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lib.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lib"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lib.com"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lib.exe"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lib"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lib.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lib.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lib"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/"
+    found: "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      MSBuild version 17.14.14+a129329f1 for .NET Framework
+      Build started 5/24/2026 6:59:33 PM.
+      
+      Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      Done Building Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets) -- FAILED.
+      
+      Build FAILED.
+      
+      "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default target) (1) ->
+      (ClCompile target) -> 
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      
+          0 Warning(s)
+          1 Error(s)
+      
+      Time Elapsed 00:00:00.66
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/"
+    found: "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      MSBuild version 17.14.14+a129329f1 for .NET Framework
+      Build started 5/24/2026 6:59:34 PM.
+      
+      Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      PrepareForBuild:
+        Creating directory "Debug\\".
+        Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
+        Creating directory "Debug\\CompilerIdCXX.tlog\\".
+      InitializeBuildStatus:
+        Creating "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+        Touching "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      Done Building Project "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets) -- FAILED.
+      
+      Build FAILED.
+      
+      "E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default target) (1) ->
+      (ClCompile target) -> 
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001: Invalid command line switch for "CL.exe". System.ArgumentException: Item has already been added. Key in dictionary: 'Path'  Key being added: 'PATH' [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Collections.Hashtable.Insert(Object key, Object nvalue, Boolean add) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at System.Diagnostics.ProcessStartInfo.get_EnvironmentVariables() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.GetProcessStartInfo(String pathToTool, String commandLineCommands, String responseFileSwitch) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.TrackerExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.TrackedVCToolTask.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.CPPTasks.CL.ExecuteTool(String pathToTool, String responseFileCommands, String commandLineCommands) [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Microsoft\\VC\\v170\\Microsoft.CppCommon.targets(787,5): error MSB6001:    at Microsoft.Build.Utilities.ToolTask.Execute() [E:\\dduongtrandai-github\\LA-Studio\\ref-projects\\speech-lm-tts.cpp\\build\\CMakeFiles\\4.3.2\\CompilerIdCXX\\CompilerIdCXX.vcxproj]
+      
+          0 Warning(s)
+          1 Error(s)
+      
+      Time Elapsed 00:00:00.74
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:103 (__resolve_linker_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "link"
+    candidate_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Git/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/"
+      - "C:/Program Files/eSpeak NG/"
+      - "C:/Users/daidu/AppData/Local/agy/bin/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/daidu/miniconda3/"
+      - "C:/Users/daidu/miniconda3/Scripts/"
+      - "C:/Users/daidu/miniconda3/Library/bin/"
+      - "C:/Users/daidu/.lmstudio/bin/"
+      - "C:/Users/daidu/AppData/Roaming/npm/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/"
+      - "C:/Users/daidu/.local/bin/"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link.com"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link.exe"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/link"
+      - "C:/Windows/System32/link.com"
+      - "C:/Windows/System32/link.exe"
+      - "C:/Windows/System32/link"
+      - "C:/Windows/link.com"
+      - "C:/Windows/link.exe"
+      - "C:/Windows/link"
+      - "C:/Windows/System32/wbem/link.com"
+      - "C:/Windows/System32/wbem/link.exe"
+      - "C:/Windows/System32/wbem/link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/link"
+      - "C:/Windows/System32/OpenSSH/link.com"
+      - "C:/Windows/System32/OpenSSH/link.exe"
+      - "C:/Windows/System32/OpenSSH/link"
+      - "C:/Program Files/Git/cmd/link.com"
+      - "C:/Program Files/Git/cmd/link.exe"
+      - "C:/Program Files/Git/cmd/link"
+      - "C:/Program Files/Git/bin/link.com"
+      - "C:/Program Files/Git/bin/link.exe"
+      - "C:/Program Files/Git/bin/link"
+      - "C:/Program Files/nodejs/link.com"
+      - "C:/Program Files/nodejs/link.exe"
+      - "C:/Program Files/nodejs/link"
+      - "C:/Program Files/Docker/Docker/resources/bin/link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/link"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link.com"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link.exe"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/link"
+      - "C:/Program Files/cursor/resources/app/bin/link.com"
+      - "C:/Program Files/cursor/resources/app/bin/link.exe"
+      - "C:/Program Files/cursor/resources/app/bin/link"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link.com"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link.exe"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/link"
+      - "C:/Program Files/eSpeak NG/link.com"
+      - "C:/Program Files/eSpeak NG/link.exe"
+      - "C:/Program Files/eSpeak NG/link"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/agy/bin/link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/link"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/link"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/link"
+      - "C:/Users/daidu/miniconda3/link.com"
+      - "C:/Users/daidu/miniconda3/link.exe"
+      - "C:/Users/daidu/miniconda3/link"
+      - "C:/Users/daidu/miniconda3/Scripts/link.com"
+      - "C:/Users/daidu/miniconda3/Scripts/link.exe"
+      - "C:/Users/daidu/miniconda3/Scripts/link"
+      - "C:/Users/daidu/miniconda3/Library/bin/link.com"
+      - "C:/Users/daidu/miniconda3/Library/bin/link.exe"
+      - "C:/Users/daidu/miniconda3/Library/bin/link"
+      - "C:/Users/daidu/.lmstudio/bin/link.com"
+      - "C:/Users/daidu/.lmstudio/bin/link.exe"
+      - "C:/Users/daidu/.lmstudio/bin/link"
+      - "C:/Users/daidu/AppData/Roaming/npm/link.com"
+      - "C:/Users/daidu/AppData/Roaming/npm/link.exe"
+      - "C:/Users/daidu/AppData/Roaming/npm/link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/link"
+      - "C:/Users/daidu/.local/bin/link.com"
+      - "C:/Users/daidu/.local/bin/link.exe"
+      - "C:/Users/daidu/.local/bin/link"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link.com"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link.exe"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/link"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/link"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link.com"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link.exe"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/link"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:37 (find_program)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:65 (__resolve_tool_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:104 (__resolve_linker_path)"
+      - "E:/dduongtrandai-github/LA-Studio/.deps/vcpkg/downloads/tools/cmake-4.3.2-windows/cmake-4.3.2-windows-x86_64/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:206 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "_CMAKE_TOOL_WITH_PATH"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "lld-link"
+    candidate_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/Git/bin/"
+      - "C:/Program Files/nodejs/"
+      - "C:/Program Files/Docker/Docker/resources/bin/"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/"
+      - "C:/Program Files/eSpeak NG/"
+      - "C:/Users/daidu/AppData/Local/agy/bin/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/daidu/miniconda3/"
+      - "C:/Users/daidu/miniconda3/Scripts/"
+      - "C:/Users/daidu/miniconda3/Library/bin/"
+      - "C:/Users/daidu/.lmstudio/bin/"
+      - "C:/Users/daidu/AppData/Roaming/npm/"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/"
+      - "C:/Users/daidu/.local/bin/"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lld-link.com"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lld-link.exe"
+      - "C:/Users/daidu/.codex/tmp/arg0/codex-arg06Yvupx/lld-link"
+      - "C:/Windows/System32/lld-link.com"
+      - "C:/Windows/System32/lld-link.exe"
+      - "C:/Windows/System32/lld-link"
+      - "C:/Windows/lld-link.com"
+      - "C:/Windows/lld-link.exe"
+      - "C:/Windows/lld-link"
+      - "C:/Windows/System32/wbem/lld-link.com"
+      - "C:/Windows/System32/wbem/lld-link.exe"
+      - "C:/Windows/System32/wbem/lld-link"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/lld-link"
+      - "C:/Windows/System32/OpenSSH/lld-link.com"
+      - "C:/Windows/System32/OpenSSH/lld-link.exe"
+      - "C:/Windows/System32/OpenSSH/lld-link"
+      - "C:/Program Files/Git/cmd/lld-link.com"
+      - "C:/Program Files/Git/cmd/lld-link.exe"
+      - "C:/Program Files/Git/cmd/lld-link"
+      - "C:/Program Files/Git/bin/lld-link.com"
+      - "C:/Program Files/Git/bin/lld-link.exe"
+      - "C:/Program Files/Git/bin/lld-link"
+      - "C:/Program Files/nodejs/lld-link.com"
+      - "C:/Program Files/nodejs/lld-link.exe"
+      - "C:/Program Files/nodejs/lld-link"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.com"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link.exe"
+      - "C:/Program Files/Docker/Docker/resources/bin/lld-link"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lld-link.com"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lld-link.exe"
+      - "C:/Qt/Tools/CMake_64/bin/cmake.exe/lld-link"
+      - "C:/Program Files/cursor/resources/app/bin/lld-link.com"
+      - "C:/Program Files/cursor/resources/app/bin/lld-link.exe"
+      - "C:/Program Files/cursor/resources/app/bin/lld-link"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lld-link.com"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lld-link.exe"
+      - "C:/Program Files (x86)/Google/Cloud SDK/google-cloud-sdk/bin/lld-link"
+      - "C:/Program Files/eSpeak NG/lld-link.com"
+      - "C:/Program Files/eSpeak NG/lld-link.exe"
+      - "C:/Program Files/eSpeak NG/lld-link"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/agy/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/lld-link"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/GitHubDesktop/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Microsoft VS Code/bin/lld-link"
+      - "C:/Users/daidu/miniconda3/lld-link.com"
+      - "C:/Users/daidu/miniconda3/lld-link.exe"
+      - "C:/Users/daidu/miniconda3/lld-link"
+      - "C:/Users/daidu/miniconda3/Scripts/lld-link.com"
+      - "C:/Users/daidu/miniconda3/Scripts/lld-link.exe"
+      - "C:/Users/daidu/miniconda3/Scripts/lld-link"
+      - "C:/Users/daidu/miniconda3/Library/bin/lld-link.com"
+      - "C:/Users/daidu/miniconda3/Library/bin/lld-link.exe"
+      - "C:/Users/daidu/miniconda3/Library/bin/lld-link"
+      - "C:/Users/daidu/.lmstudio/bin/lld-link.com"
+      - "C:/Users/daidu/.lmstudio/bin/lld-link.exe"
+      - "C:/Users/daidu/.lmstudio/bin/lld-link"
+      - "C:/Users/daidu/AppData/Roaming/npm/lld-link.com"
+      - "C:/Users/daidu/AppData/Roaming/npm/lld-link.exe"
+      - "C:/Users/daidu/AppData/Roaming/npm/lld-link"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Microsoft/WindowsApps/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/Scripts/lld-link"
+      - "C:/Users/daidu/.local/bin/lld-link.com"
+      - "C:/Users/daidu/.local/bin/lld-link.exe"
+      - "C:/Users/daidu/.local/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0/LocalCache/local-packages/Python311/Scripts/lld-link"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/Programs/Antigravity IDE/bin/lld-link"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lld-link.com"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lld-link.exe"
+      - "C:/Users/daidu/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/lld-link"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lld-link.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lld-link.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0/app/resources/lld-link"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\daidu\\.codex\\tmp\\arg0\\codex-arg06Yvupx"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\Git\\bin"
+        - "C:\\Program Files\\nodejs\\"
+        - "C:\\Program Files\\Docker\\Docker\\resources\\bin"
+        - "C:\\Qt\\Tools\\CMake_64\\bin\\cmake.exe"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files (x86)\\Google\\Cloud SDK\\google-cloud-sdk\\bin"
+        - "C:\\Program Files\\eSpeak NG\\"
+        - "C:\\Users\\daidu\\AppData\\Local\\agy\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "C:\\Users\\daidu\\AppData\\Local\\GitHubDesktop\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\daidu\\miniconda3"
+        - "C:\\Users\\daidu\\miniconda3\\Scripts"
+        - "C:\\Users\\daidu\\miniconda3\\Library\\bin"
+        - "C:\\Users\\daidu\\.lmstudio\\bin"
+        - "C:\\Users\\daidu\\AppData\\Roaming\\npm"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\Scripts"
+        - "C:\\Users\\daidu\\.local\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts"
+        - "C:\\Users\\daidu\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+        - "C:\\Users\\daidu\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.519.5221.0_x64__2p2nqsd0c76g0\\app\\resources"
+...
