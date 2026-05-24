@@ -48,6 +48,19 @@ function Resolve-BuildArtifactPath {
     return ""
 }
 
+function Resolve-FirstExistingPath {
+    param(
+        [string[]]$Candidates
+    )
+
+    foreach ($p in $Candidates) {
+        if ($p -and (Test-Path $p)) {
+            return $p
+        }
+    }
+    return ""
+}
+
 # Verify build artifacts
 $DllPath = Resolve-BuildArtifactPath -BaseDir $BuildDir -Filename "speechlm-tts.dll"
 $CliPath = Resolve-BuildArtifactPath -BaseDir $BuildDir -Filename "speechlm-tts-cli.exe"
@@ -64,12 +77,18 @@ Copy-Item $DllPath $StagingDir
 Copy-Item $CliPath $StagingDir
 
 # Copy onnxruntime.dll
-$OrtDllSrc = ""
-if ($OnnxRuntimeRoot -and (Test-Path (Join-Path $OnnxRuntimeRoot "bin\onnxruntime.dll"))) {
-    $OrtDllSrc = Join-Path $OnnxRuntimeRoot "bin\onnxruntime.dll"
-} elseif (Test-Path (Join-Path $BuildDir "onnxruntime.dll")) {
-    $OrtDllSrc = Join-Path $BuildDir "onnxruntime.dll"
-} else {
+$OrtCandidates = @()
+if ($OnnxRuntimeRoot) {
+    $OrtCandidates += (Join-Path $OnnxRuntimeRoot "bin\onnxruntime.dll")
+    $OrtCandidates += (Join-Path $OnnxRuntimeRoot "lib\onnxruntime.dll")
+    $OrtCandidates += (Join-Path $OnnxRuntimeRoot "onnxruntime.dll")
+}
+$OrtCandidates += (Join-Path $BuildDir "onnxruntime.dll")
+$OrtCandidates += (Join-Path (Join-Path $BuildDir "Release") "onnxruntime.dll")
+$OrtCandidates += (Join-Path (Join-Path $BuildDir "RelWithDebInfo") "onnxruntime.dll")
+
+$OrtDllSrc = Resolve-FirstExistingPath -Candidates $OrtCandidates
+if (-not $OrtDllSrc) {
     $OrtFallback = Resolve-BuildArtifactPath -BaseDir $BuildDir -Filename "onnxruntime.dll"
     if ($OrtFallback) {
         $OrtDllSrc = $OrtFallback
@@ -77,7 +96,8 @@ if ($OnnxRuntimeRoot -and (Test-Path (Join-Path $OnnxRuntimeRoot "bin\onnxruntim
 }
 
 if (-not $OrtDllSrc) {
-    Write-Error "onnxruntime.dll is required but was not found in ONNXRUNTIME_ROOT\\bin or '$BuildDir'."
+    $diag = ($OrtCandidates | ForEach-Object { " - $_" }) -join "`n"
+    Write-Error "onnxruntime.dll is required but was not found. Checked:`n$diag"
 }
 
 Write-Host "Copying ONNX Runtime DLL from: $OrtDllSrc"
