@@ -1,9 +1,13 @@
 name: Release SpeechLM TTS CPU Runtime
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
   build-and-release:
@@ -15,6 +19,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+
+      - name: Checkout llama.cpp
+        uses: actions/checkout@v4
+        with:
+          repository: ggml-org/llama.cpp
+          path: llama.cpp
+          fetch-depth: 1
 
       - name: Setup MSBuild and Visual Studio Developer Command Prompt
         uses: microsoft/setup-msbuild@v2
@@ -35,7 +46,7 @@ jobs:
       - name: Configure CMake
         shell: pwsh
         run: |
-          if (Test-Path "build/CMakeCache.txt") {
+          if (Test-Path "build") {
             Remove-Item -Recurse -Force "build"
           }
           $llamaDir = ""
@@ -50,6 +61,8 @@ jobs:
           $cmakeArgs = @(
             "-B", "build",
             "-S", ".",
+            "-G", "Visual Studio 17 2022",
+            "-A", "x64",
             "-DCMAKE_BUILD_TYPE=Release",
             "-DSLM_LLAMA_DIR=$llamaDir",
             "-DONNXRUNTIME_ROOT=${{ env.ONNXRUNTIME_ROOT }}"

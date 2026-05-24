@@ -30,6 +30,15 @@ endif()
 if(NOT EXISTS "${SLM_LLAMA_DIR}/CMakeLists.txt")
     message(FATAL_ERROR "llama.cpp CMakeLists.txt not found at ${SLM_LLAMA_DIR}")
 endif()
+
+set(GGML_NATIVE OFF CACHE BOOL "Build portable CPU kernels instead of host-native kernels" FORCE)
+set(LLAMA_BUILD_TESTS OFF CACHE BOOL "Do not build llama.cpp tests" FORCE)
+set(LLAMA_BUILD_TOOLS OFF CACHE BOOL "Do not build llama.cpp tools" FORCE)
+set(LLAMA_BUILD_EXAMPLES OFF CACHE BOOL "Do not build llama.cpp examples" FORCE)
+set(LLAMA_BUILD_SERVER OFF CACHE BOOL "Do not build llama.cpp server" FORCE)
+set(LLAMA_BUILD_APP OFF CACHE BOOL "Do not build llama.cpp app" FORCE)
+set(LLAMA_BUILD_UI OFF CACHE BOOL "Do not build llama.cpp UI" FORCE)
+set(LLAMA_USE_PREBUILT_UI OFF CACHE BOOL "Do not fetch llama.cpp prebuilt UI" FORCE)
 add_subdirectory(${SLM_LLAMA_DIR} llama_cpp_build EXCLUDE_FROM_ALL)
 
 # Find ONNX Runtime dependency

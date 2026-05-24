@@ -5,6 +5,7 @@ param (
 )
 
 $ErrorActionPreference = "Stop"
+$ProjectRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
 
 Write-Host "========================================="
 Write-Host "Packaging SpeechLM TTS Runtime Release..."
@@ -94,7 +95,11 @@ foreach ($dll in @("llama.dll", "ggml.dll")) {
 # Copy LICENSE files if they exist
 $LicensesDir = Join-Path $StagingDir "LICENSES"
 New-Item -ItemType Directory -Path $LicensesDir | Out-Null
-$LicenseFiles = @("../../LICENSE", "../../Readme.md", "../llama.cpp/LICENSE")
+$LicenseFiles = @(
+    (Join-Path $ProjectRoot "LICENSE"),
+    (Join-Path $ProjectRoot "README.md"),
+    (Join-Path $ProjectRoot "llama.cpp\LICENSE")
+)
 foreach ($lf in $LicenseFiles) {
     if (Test-Path $lf) {
         Copy-Item $lf $LicensesDir

@@ -1,0 +1,12 @@
+build/
+dist/
+stage/
+ort_sdk/
+llama.cpp/
+onnxruntime-win-*.zip
+*.user
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.dir/
