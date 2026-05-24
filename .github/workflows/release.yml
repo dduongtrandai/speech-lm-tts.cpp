@@ -30,16 +30,17 @@ jobs:
       - name: Setup MSBuild and Visual Studio Developer Command Prompt
         uses: microsoft/setup-msbuild@v2
 
-      - name: Install ONNX Runtime SDK (v1.17.1)
+      - name: Install ONNX Runtime SDK (v1.20.1)
         shell: pwsh
         run: |
-          $Url = "https://github.com/microsoft/onnxruntime/releases/download/v1.17.1/onnxruntime-win-x64-1.17.1.zip"
-          $ZipFile = "onnxruntime-win-x64-1.17.1.zip"
+          $OrtVersion = "1.20.1"
+          $Url = "https://github.com/microsoft/onnxruntime/releases/download/v$OrtVersion/onnxruntime-win-x64-$OrtVersion.zip"
+          $ZipFile = "onnxruntime-win-x64-$OrtVersion.zip"
           Write-Host "Downloading ONNX Runtime SDK from $Url..."
           Invoke-WebRequest -Uri $Url -OutFile $ZipFile
           Write-Host "Extracting ONNX Runtime SDK..."
           Expand-Archive -Path $ZipFile -DestinationPath "ort_sdk"
-          $OrtRoot = Resolve-Path "ort_sdk/onnxruntime-win-x64-1.17.1"
+          $OrtRoot = Resolve-Path "ort_sdk/onnxruntime-win-x64-$OrtVersion"
           echo "ONNXRUNTIME_ROOT=$OrtRoot" >> $env:GITHUB_ENV
           Write-Host "ONNX Runtime SDK successfully installed at $OrtRoot"
 
@@ -88,7 +89,8 @@ jobs:
           pwsh -File scripts/package-runtime.ps1 `
             -BuildDir "build" `
             -OutputDir "dist" `
-            -OnnxRuntimeRoot "${{ env.ONNXRUNTIME_ROOT }}"
+            -OnnxRuntimeRoot "${{ env.ONNXRUNTIME_ROOT }}" `
+            -RuntimeVersion "${{ github.ref_name }}"
 
       - name: Create Release
         uses: softprops/action-gh-release@v2

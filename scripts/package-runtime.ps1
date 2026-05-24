@@ -1,11 +1,19 @@
 param (
     [string]$BuildDir = "build",
     [string]$OutputDir = "dist",
-    [string]$OnnxRuntimeRoot = $env:ONNXRUNTIME_ROOT
+    [string]$OnnxRuntimeRoot = $env:ONNXRUNTIME_ROOT,
+    [string]$RuntimeVersion = ""
 )
 
 $ErrorActionPreference = "Stop"
 $ProjectRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
+if (-not $RuntimeVersion) {
+    if ($env:GITHUB_REF_NAME) {
+        $RuntimeVersion = $env:GITHUB_REF_NAME
+    } else {
+        $RuntimeVersion = "v0.1.0"
+    }
+}
 
 Write-Host "========================================="
 Write-Host "Packaging SpeechLM TTS Runtime Release..."
@@ -197,11 +205,12 @@ $ManifestContent = @{
         backend = "speech-lm-tts"
         components = @{
             "llama.cpp" = "b4600" # fallback/placeholder commit
-            "onnxruntime" = "1.17.1"
+            "onnxruntime" = "1.20.1"
         }
         profiles = @("neutts-air-v1", "vieneu-v2-turbo")
     }
 }
+$ManifestContent.version = $RuntimeVersion
 
 $ManifestContent | ConvertTo-Json -Depth 5 | Out-File -FilePath $ManifestPath -Encoding utf8
 
