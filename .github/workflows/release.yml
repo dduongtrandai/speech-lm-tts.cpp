@@ -38,10 +38,24 @@ jobs:
           if (Test-Path "build/CMakeCache.txt") {
             Remove-Item -Recurse -Force "build"
           }
-          cmake -B build -S . `
-            -DCMAKE_BUILD_TYPE=Release `
-            -DSLM_LLAMA_DIR=llama.cpp `
-            -DONNXRUNTIME_ROOT="${{ env.ONNXRUNTIME_ROOT }}"
+          $llamaDir = ""
+          if (Test-Path "llama.cpp/CMakeLists.txt") {
+            $llamaDir = "llama.cpp"
+          } elseif (Test-Path "llama/CMakeLists.txt") {
+            $llamaDir = "llama"
+          } else {
+            Write-Error "Could not find llama.cpp source directory (expected llama.cpp/ or llama/)."
+          }
+
+          $cmakeArgs = @(
+            "-B", "build",
+            "-S", ".",
+            "-DCMAKE_BUILD_TYPE=Release",
+            "-DSLM_LLAMA_DIR=$llamaDir",
+            "-DONNXRUNTIME_ROOT=${{ env.ONNXRUNTIME_ROOT }}"
+          )
+
+          cmake @cmakeArgs
 
       - name: Build Project
         shell: pwsh
