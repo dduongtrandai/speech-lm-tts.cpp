@@ -132,6 +132,17 @@ static VowelMap get_vietnamese_vowel_base(uint32_t cp) {
     return {cp, 1};
 }
 
+static bool has_vietnamese_signal(const std::string& text) {
+    for (uint32_t cp : utf8_to_cps(text)) {
+        if (cp == 259 || cp == 226 || cp == 234 || cp == 244 || cp == 417 || cp == 432 ||
+            cp == 273 || cp == 258 || cp == 194 || cp == 202 || cp == 212 || cp == 416 ||
+            cp == 431 || cp == 272 || get_vietnamese_vowel_base(cp).tone > 1) {
+            return true;
+        }
+    }
+    return false;
+}
+
 std::string VieneuProfile::format_prompt(const std::string& phonemes) {
     return "<|speaker_16|><|TEXT_PROMPT_START|>" + phonemes + "<|TEXT_PROMPT_END|><|SPEECH_GENERATION_START|>";
 }
@@ -150,6 +161,7 @@ std::vector<int64_t> VieneuProfile::extract_speech_ids(const std::string& genera
 std::string VieneuProfile::phonemize(const std::string& text) {
     std::stringstream ss;
     std::string word = "";
+    const bool vietnamese_context = has_vietnamese_signal(text);
     
     auto is_punc = [](char c) {
         return c == '.' || c == ',' || c == '?' || c == '!' || c == ';' || c == ':' || c == '"' || c == '(' || c == ')';
@@ -158,15 +170,16 @@ std::string VieneuProfile::phonemize(const std::string& text) {
     auto process_single_word = [&](const std::string& w_raw) -> std::string {
         if (w_raw.empty()) return "";
 
-        // Check if word is ASCII / English
-        bool is_english = true;
+        // In Vietnamese sentences, unaccented syllables (e.g. "vua", "gian")
+        // must not bypass G2P merely because they contain ASCII characters only.
+        bool is_ascii = true;
         for (char c : w_raw) {
             if ((unsigned char)c >= 0x80) {
-                is_english = false;
+                is_ascii = false;
                 break;
             }
         }
-        if (is_english) {
+        if (is_ascii && !vietnamese_context) {
             // Keep English words as they are, but add a stress symbol at start if it's alphabetical
             if (std::isalpha((unsigned char)w_raw[0])) {
                 return "\u02C8" + w_raw;
@@ -256,7 +269,8 @@ std::string VieneuProfile::phonemize(const std::string& text) {
         }
         else if (rime.rfind("iê", 0) == 0 || rime.rfind("yê", 0) == 0 || rime.rfind("ia", 0) == 0 || rime.rfind("ya", 0) == 0) {
             ipa_vowel = "i\xc9\x9b"; // iɛ
-            std::string rem = rime.substr(std::min<size_t>(4, rime.size())); // Guard short ASCII variants like "ia"/"ya".
+            const size_t prefix_bytes = (rime.rfind("ia", 0) == 0 || rime.rfind("ya", 0) == 0) ? 2 : 3;
+            std::string rem = rime.substr(std::min(prefix_bytes, rime.size()));
             if (rem == "ng") ipa_coda = "\xc5\x8b";
             else if (rem == "n") ipa_coda = "n";
             else if (rem == "m") ipa_coda = "m";
@@ -266,7 +280,8 @@ std::string VieneuProfile::phonemize(const std::string& text) {
         }
         else if (rime.rfind("uô", 0) == 0 || rime.rfind("ua", 0) == 0) {
             ipa_vowel = "u\xc9\x99"; // uə
-            std::string rem = rime.substr(std::min<size_t>(4, rime.size())); // Guard short ASCII variant "ua".
+            const size_t prefix_bytes = rime.rfind("ua", 0) == 0 ? 2 : 3;
+            std::string rem = rime.substr(std::min(prefix_bytes, rime.size()));
             if (rem == "ng") ipa_coda = "\xc5\x8b";
             else if (rem == "n") ipa_coda = "n";
             else if (rem == "m") ipa_coda = "m";
@@ -278,10 +293,10 @@ std::string VieneuProfile::phonemize(const std::string& text) {
             // General vowel parsing
             std::string v_sp = "";
             std::string c_sp = "";
-            if (rime.rfind("oă", 0) == 0) { v_sp = "w\xc9\x90"; rime = rime.substr(std::min<size_t>(4, rime.size())); } // wɐ
-            else if (rime.rfind("oa", 0) == 0) { v_sp = "wa\xcb\x90"; rime = rime.substr(std::min<size_t>(3, rime.size())); } // waː
-            else if (rime.rfind("uê", 0) == 0) { v_sp = "we"; rime = rime.substr(std::min<size_t>(4, rime.size())); }
-            else if (rime.rfind("uy", 0) == 0) { v_sp = "wi"; rime = rime.substr(std::min<size_t>(3, rime.size())); }
+            if (rime.rfind("oă", 0) == 0) { v_sp = "w\xc9\x90"; rime = rime.substr(std::min<size_t>(3, rime.size())); } // wɐ
+            else if (rime.rfind("oa", 0) == 0) { v_sp = "wa\xcb\x90"; rime = rime.substr(std::min<size_t>(2, rime.size())); } // waː
+            else if (rime.rfind("uê", 0) == 0) { v_sp = "we"; rime = rime.substr(std::min<size_t>(3, rime.size())); }
+            else if (rime.rfind("uy", 0) == 0) { v_sp = "wi"; rime = rime.substr(std::min<size_t>(2, rime.size())); }
             else if (rime.rfind("anh", 0) == 0) { v_sp = "e"; c_sp = "\xc9\xb2"; rime = ""; } // eɲ
             else if (rime.rfind("ach", 0) == 0) { v_sp = "\xc9\x90"; c_sp = "t\xca\x83"; rime = ""; } // ɐtʃ
             else if (rime.rfind("inh", 0) == 0) { v_sp = "i"; c_sp = "\xc9\xb2"; rime = ""; } // iɲ

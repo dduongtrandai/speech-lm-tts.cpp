@@ -1,0 +1,10 @@
+prefix=C:/Program Files (x86)/speechlm-tts-project
+exec_prefix=C:/Program Files (x86)/speechlm-tts-project
+libdir=C:/Program Files (x86)/speechlm-tts-project/lib
+includedir=C:/Program Files (x86)/speechlm-tts-project/include
+
+Name: llama
+Description: Port of Facebook's LLaMA model in C/C++
+Version: 0.0.0
+Libs: -L${libdir} -lggml -lggml-base -lllama
+Cflags: -I${includedir}

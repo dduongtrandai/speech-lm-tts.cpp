@@ -3,6 +3,7 @@ project(speechlm-tts-project LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+include(CTest)
 
 # DLL/Output Directory setup (same as build root)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
@@ -108,3 +109,11 @@ target_include_directories(test-abi-c PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 target_link_libraries(test-abi-c PRIVATE speechlm-tts)
+
+if(BUILD_TESTING)
+    add_executable(test-vieneu-phonemizer
+        tests/vieneu-phonemizer.cpp
+    )
+    target_link_libraries(test-vieneu-phonemizer PRIVATE speechlm-tts-core)
+    add_test(NAME vieneu-phonemizer COMMAND test-vieneu-phonemizer)
+endif()
