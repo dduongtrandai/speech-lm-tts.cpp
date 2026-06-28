@@ -16,6 +16,12 @@
 #include <nlohmann/json.hpp>
 
 #ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
 #include <windows.h>
 #else
 #include <sys/stat.h>
@@ -289,6 +295,39 @@ std::vector<float> softmax(const std::vector<float>& logits) {
     return probs;
 }
 
+std::vector<std::string> session_input_names(Ort::Session& session) {
+    Ort::AllocatorWithDefaultOptions allocator;
+    std::vector<std::string> names;
+    const size_t count = session.GetInputCount();
+    names.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        auto name = session.GetInputNameAllocated(i, allocator);
+        names.emplace_back(name.get());
+    }
+    return names;
+}
+
+std::vector<std::string> session_output_names(Ort::Session& session) {
+    Ort::AllocatorWithDefaultOptions allocator;
+    std::vector<std::string> names;
+    const size_t count = session.GetOutputCount();
+    names.reserve(count);
+    for (size_t i = 0; i < count; ++i) {
+        auto name = session.GetOutputNameAllocated(i, allocator);
+        names.emplace_back(name.get());
+    }
+    return names;
+}
+
+std::vector<const char*> name_ptrs(const std::vector<std::string>& names) {
+    std::vector<const char*> ptrs;
+    ptrs.reserve(names.size());
+    for (const auto& name : names) {
+        ptrs.push_back(name.c_str());
+    }
+    return ptrs;
+}
+
 } // namespace
 
 bool VieneuV3OnnxEngine::ByteBpeTokenizer::load(const std::string& path, std::string& error) {
@@ -332,7 +371,7 @@ std::vector<int64_t> VieneuV3OnnxEngine::ByteBpeTokenizer::encode(const std::str
         return {};
     }
     while (word.size() > 1) {
-        int best_rank = std::numeric_limits<int>::max();
+        int best_rank = (std::numeric_limits<int>::max)();
         size_t best_idx = static_cast<size_t>(-1);
         for (size_t i = 0; i + 1 < word.size(); ++i) {
             auto it = merge_ranks.find(join_pair_key(word[i], word[i + 1]));
@@ -715,8 +754,14 @@ bool VieneuV3OnnxEngine::acoustic_frame(
         std::vector<int64_t> pos_shape = {1, 2};
 
         auto mem = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);
-        std::array<const char*, 6> input_names = {"token_emb", "position_ids", "past_k_0", "past_k_1", "past_v_0", "past_v_1"};
-        std::array<const char*, 5> output_names = {"hidden", "present_k_0", "present_k_1", "present_v_0", "present_v_1"};
+        const std::vector<std::string> input_names = session_input_names(*acoustic_session_);
+        const std::vector<std::string> output_names = session_output_names(*acoustic_session_);
+        if (input_names.size() != 6 || output_names.size() != 5) {
+            error = "VieNeu v3 acoustic ONNX signature mismatch: expected 6 inputs and 5 outputs.";
+            return false;
+        }
+        const std::vector<const char*> input_ptrs = name_ptrs(input_names);
+        const std::vector<const char*> output_ptrs = name_ptrs(output_names);
         std::vector<Ort::Value> inputs;
         inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, token.data(), token.size(), token_shape.data(), token_shape.size()));
         inputs.emplace_back(Ort::Value::CreateTensor<int64_t>(mem, pos.data(), pos.size(), pos_shape.data(), pos_shape.size()));
@@ -724,7 +769,7 @@ bool VieneuV3OnnxEngine::acoustic_frame(
         inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, empty.data(), 0, empty_shape.data(), empty_shape.size()));
         inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, empty.data(), 0, empty_shape.data(), empty_shape.size()));
         inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, empty.data(), 0, empty_shape.data(), empty_shape.size()));
-        auto out = acoustic_session_->Run(Ort::RunOptions{nullptr}, input_names.data(), inputs.data(), inputs.size(), output_names.data(), output_names.size());
+        auto out = acoustic_session_->Run(Ort::RunOptions{nullptr}, input_ptrs.data(), inputs.data(), inputs.size(), output_ptrs.data(), output_ptrs.size());
         TensorBlob hidden = copy_float_tensor(out[0]);
         TensorBlob pk0 = copy_float_tensor(out[1]);
         TensorBlob pk1 = copy_float_tensor(out[2]);
@@ -763,7 +808,7 @@ bool VieneuV3OnnxEngine::acoustic_frame(
             step_inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, pk1.data.data(), pk1.data.size(), pk1.shape.data(), pk1.shape.size()));
             step_inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, pv0.data.data(), pv0.data.size(), pv0.shape.data(), pv0.shape.size()));
             step_inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, pv1.data.data(), pv1.data.size(), pv1.shape.data(), pv1.shape.size()));
-            auto step_out = acoustic_session_->Run(Ort::RunOptions{nullptr}, input_names.data(), step_inputs.data(), step_inputs.size(), output_names.data(), output_names.size());
+            auto step_out = acoustic_session_->Run(Ort::RunOptions{nullptr}, input_ptrs.data(), step_inputs.data(), step_inputs.size(), output_ptrs.data(), output_ptrs.size());
             hidden = copy_float_tensor(step_out[0]);
             pk0 = copy_float_tensor(step_out[1]);
             pk1 = copy_float_tensor(step_out[2]);
@@ -796,12 +841,18 @@ bool VieneuV3OnnxEngine::decode_codes(const std::vector<int64_t>& frames, int64_
         std::vector<int64_t> codes_shape = {1, frame_count, config_.n_vq};
         std::vector<int64_t> len_shape = {1};
         auto mem = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);
-        std::array<const char*, 2> input_names = {"audio_codes", "audio_code_lengths"};
-        std::array<const char*, 1> output_names = {"audio"};
+        const std::vector<std::string> input_names = session_input_names(*codec_decode_session_);
+        const std::vector<std::string> output_names = session_output_names(*codec_decode_session_);
+        if (input_names.size() != 2 || output_names.empty()) {
+            error = "MOSS codec decode ONNX signature mismatch: expected 2 inputs and at least 1 output.";
+            return false;
+        }
+        const std::vector<const char*> input_ptrs = name_ptrs(input_names);
+        const std::vector<const char*> output_ptrs = name_ptrs(output_names);
         std::vector<Ort::Value> inputs;
         inputs.emplace_back(Ort::Value::CreateTensor<int32_t>(mem, codes.data(), codes.size(), codes_shape.data(), codes_shape.size()));
         inputs.emplace_back(Ort::Value::CreateTensor<int32_t>(mem, lengths.data(), lengths.size(), len_shape.data(), len_shape.size()));
-        auto out = codec_decode_session_->Run(Ort::RunOptions{nullptr}, input_names.data(), inputs.data(), inputs.size(), output_names.data(), output_names.size());
+        auto out = codec_decode_session_->Run(Ort::RunOptions{nullptr}, input_ptrs.data(), inputs.data(), inputs.size(), output_ptrs.data(), output_ptrs.size());
         TensorBlob audio = copy_float_tensor(out[0]);
         if (audio.shape.size() == 3 && audio.shape[0] == 1) {
             const int64_t channels = audio.shape[1];
@@ -854,21 +905,17 @@ bool VieneuV3OnnxEngine::synthesize(const VieneuV3OnnxParams& params, std::vecto
 
     std::lock_guard<std::mutex> lock(run_mutex_);
     try {
-        std::array<const char*, 1> pre_inputs = {"inputs_embeds"};
-        std::vector<const char*> pre_outputs;
-        pre_outputs.push_back("hidden_states");
-        std::vector<std::string> pk_names;
-        std::vector<std::string> pv_names;
-        for (int i = 0; i < config_.num_hidden_layers; ++i) {
-            pk_names.push_back("present_k_" + std::to_string(i));
-            pre_outputs.push_back(pk_names.back().c_str());
+        const std::vector<std::string> pre_input_names = session_input_names(*prefill_session_);
+        const std::vector<std::string> pre_output_names = session_output_names(*prefill_session_);
+        const size_t expected_lm_outputs = static_cast<size_t>(1 + config_.num_hidden_layers * 2);
+        if (pre_input_names.size() != 1 || pre_output_names.size() != expected_lm_outputs) {
+            error = "VieNeu v3 prefill ONNX signature mismatch.";
+            return false;
         }
-        for (int i = 0; i < config_.num_hidden_layers; ++i) {
-            pv_names.push_back("present_v_" + std::to_string(i));
-            pre_outputs.push_back(pv_names.back().c_str());
-        }
+        const std::vector<const char*> pre_input_ptrs = name_ptrs(pre_input_names);
+        const std::vector<const char*> pre_output_ptrs = name_ptrs(pre_output_names);
         Ort::Value prompt_tensor = Ort::Value::CreateTensor<float>(mem, prompt_embeds.data(), prompt_embeds.size(), prompt_shape.data(), prompt_shape.size());
-        auto pre = prefill_session_->Run(Ort::RunOptions{nullptr}, pre_inputs.data(), &prompt_tensor, 1, pre_outputs.data(), pre_outputs.size());
+        auto pre = prefill_session_->Run(Ort::RunOptions{nullptr}, pre_input_ptrs.data(), &prompt_tensor, 1, pre_output_ptrs.data(), pre_output_ptrs.size());
         TensorBlob hidden_blob = copy_float_tensor(pre[0]);
         std::vector<TensorBlob> past_k;
         std::vector<TensorBlob> past_v;
@@ -881,12 +928,22 @@ bool VieneuV3OnnxEngine::synthesize(const VieneuV3OnnxParams& params, std::vecto
         const int64_t last_offset = (rows.rows - 1) * config_.hidden_size;
         std::copy(hidden_blob.data.begin() + last_offset, hidden_blob.data.begin() + last_offset + config_.hidden_size, h.begin());
 
+        const std::vector<std::string> decode_input_names = session_input_names(*decode_session_);
+        const std::vector<std::string> decode_output_names = session_output_names(*decode_session_);
+        const size_t expected_decode_inputs = static_cast<size_t>(2 + config_.num_hidden_layers * 2);
+        if (decode_input_names.size() != expected_decode_inputs || decode_output_names.size() != expected_lm_outputs) {
+            error = "VieNeu v3 decode-step ONNX signature mismatch.";
+            return false;
+        }
+        const std::vector<const char*> decode_input_ptrs = name_ptrs(decode_input_names);
+        const std::vector<const char*> decode_output_ptrs = name_ptrs(decode_output_names);
+
         std::vector<std::unordered_set<int>> history;
         if (std::fabs(params.repetition_penalty - 1.0f) > 1e-6f) {
             history.resize(static_cast<size_t>(config_.n_vq));
         }
         std::vector<int64_t> frames;
-        const int max_frames = std::max(1, params.max_new_frames);
+        const int max_frames = (std::max)(1, params.max_new_frames);
         frames.reserve(static_cast<size_t>(max_frames * config_.n_vq));
         for (int t = 0; t < max_frames; ++t) {
             std::vector<int64_t> codes;
@@ -910,27 +967,12 @@ bool VieneuV3OnnxEngine::synthesize(const VieneuV3OnnxParams& params, std::vecto
             std::vector<int64_t> pos = {rows.rows + t};
             std::vector<int64_t> pos_shape = {1, 1};
 
-            std::vector<std::string> input_name_storage;
-            std::vector<const char*> input_names;
-            input_name_storage.push_back("inputs_embeds");
-            input_name_storage.push_back("position_ids");
-            for (int i = 0; i < config_.num_hidden_layers; ++i) input_name_storage.push_back("past_k_" + std::to_string(i));
-            for (int i = 0; i < config_.num_hidden_layers; ++i) input_name_storage.push_back("past_v_" + std::to_string(i));
-            for (const auto& name : input_name_storage) input_names.push_back(name.c_str());
-
-            std::vector<std::string> output_name_storage;
-            std::vector<const char*> output_names;
-            output_name_storage.push_back("hidden_states");
-            for (int i = 0; i < config_.num_hidden_layers; ++i) output_name_storage.push_back("present_k_" + std::to_string(i));
-            for (int i = 0; i < config_.num_hidden_layers; ++i) output_name_storage.push_back("present_v_" + std::to_string(i));
-            for (const auto& name : output_name_storage) output_names.push_back(name.c_str());
-
             std::vector<Ort::Value> inputs;
             inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, se.data(), se.size(), se_shape.data(), se_shape.size()));
             inputs.emplace_back(Ort::Value::CreateTensor<int64_t>(mem, pos.data(), pos.size(), pos_shape.data(), pos_shape.size()));
             for (auto& pk : past_k) inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, pk.data.data(), pk.data.size(), pk.shape.data(), pk.shape.size()));
             for (auto& pv : past_v) inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, pv.data.data(), pv.data.size(), pv.shape.data(), pv.shape.size()));
-            auto dec = decode_session_->Run(Ort::RunOptions{nullptr}, input_names.data(), inputs.data(), inputs.size(), output_names.data(), output_names.size());
+            auto dec = decode_session_->Run(Ort::RunOptions{nullptr}, decode_input_ptrs.data(), inputs.data(), inputs.size(), decode_output_ptrs.data(), decode_output_ptrs.size());
             TensorBlob dec_hidden = copy_float_tensor(dec[0]);
             std::copy(dec_hidden.data.begin(), dec_hidden.data.begin() + config_.hidden_size, h.begin());
             for (int i = 0; i < config_.num_hidden_layers; ++i) past_k[static_cast<size_t>(i)] = copy_float_tensor(dec[1 + i]);
