@@ -4,8 +4,10 @@ build*/
 out/
 dist/
 stage/
+outputs/
 
 # Dependencies
+.models/
 ort_sdk/
 llama.cpp/
 onnxruntime-win-*.zip

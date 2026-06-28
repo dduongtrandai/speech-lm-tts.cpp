@@ -6,7 +6,7 @@ A native, high-performance C++ inference engine for Speech Language Models (Spee
 
 It is designed to support speech language model architectures like **VieNeu-TTS v2 Turbo** (utilizing GGUF Speech LM + ONNX Speaker Encoder + ONNX Neural Decoder) out of the box.
 
-The ABI also exposes an experimental `vieneu-v3-onnx` profile for VieNeu-TTS v3 Turbo. This path validates and loads the local ONNX assets required by the upstream CPU runtime, but the native ByteLevel-BPE tokenizer, NPZ embedding/head loader, and autoregressive generation loop are still under active implementation.
+The ABI also exposes an experimental `vieneu-v3-onnx` profile for VieNeu-TTS v3 Turbo. This path loads the upstream CPU ONNX assets, ByteLevel-BPE tokenizer, NPZ embedding/head weights, autoregressive generation loop, v3 preset voice codes, and MOSS ONNX reference-audio encoding/decoding for single-utterance native inference.
 
 ---
 
@@ -43,6 +43,25 @@ To build `speech-lm-tts.cpp`, you will need:
 ---
 
 ## Build Instructions
+
+### Easy Local Build (Windows)
+
+We provide a helper PowerShell script [build-local.ps1](file:///e:/dduongtrandai-github/LA-Studio-Dev/ref-projects/speech-lm-tts.cpp/build-local.ps1) in the root directory that automates cloning `llama.cpp`, downloading ONNX Runtime SDK, setting up MSVC compiler paths (via Visual Studio Developer Shell), configuring CMake, building the project, and packaging it.
+
+To build the project locally, open a PowerShell console (standard Windows PowerShell or PowerShell Core) and run:
+
+```powershell
+.\build-local.ps1
+```
+
+**Parameters supported by `build-local.ps1`:**
+- `-OnnxRuntimeVersion <string>`: Specify ONNX Runtime SDK version to download (default: `1.20.1`).
+- `-Clean`: Clean the `build` directory before configuring CMake.
+- `-NoPackage`: Build the project but do not create the final zip package.
+- `-LlamaCppRepo <string>`: Custom Git repository URL for `llama.cpp`.
+- `-Generator <string>`: CMake generator to use (default: `Ninja`).
+
+### Manual Build via CMake (CLI)
 
 ### 1. Specifying ONNX Runtime
 You can specify the location of your ONNX Runtime installation using the `ONNXRUNTIME_ROOT` variable or environment variable.

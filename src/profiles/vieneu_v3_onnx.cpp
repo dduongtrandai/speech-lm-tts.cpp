@@ -50,6 +50,29 @@ uint32_t read_u32_le(const uint8_t* p) {
            (static_cast<uint32_t>(p[3]) << 24);
 }
 
+uint64_t read_u64_le(const uint8_t* p) {
+    return static_cast<uint64_t>(read_u32_le(p)) |
+           (static_cast<uint64_t>(read_u32_le(p + 4)) << 32);
+}
+
+int16_t read_i16_le(const uint8_t* p) {
+    return static_cast<int16_t>(read_u16_le(p));
+}
+
+int32_t read_i24_le(const uint8_t* p) {
+    int32_t v = static_cast<int32_t>(p[0]) |
+                (static_cast<int32_t>(p[1]) << 8) |
+                (static_cast<int32_t>(p[2]) << 16);
+    if (v & 0x00800000) {
+        v |= static_cast<int32_t>(0xFF000000);
+    }
+    return v;
+}
+
+int32_t read_i32_le(const uint8_t* p) {
+    return static_cast<int32_t>(read_u32_le(p));
+}
+
 float half_to_float(uint16_t h) {
     const uint16_t h_exp = h & 0x7C00u;
     const uint16_t h_sig = h & 0x03FFu;
@@ -179,12 +202,55 @@ std::unordered_map<std::string, NamedArray> load_npz_stored(const std::string& p
             break;
         }
         const uint16_t method = read_u16_le(data + off + 8);
-        const uint32_t compressed_size = read_u32_le(data + off + 18);
-        const uint32_t uncompressed_size = read_u32_le(data + off + 22);
+        const uint32_t compressed_size32 = read_u32_le(data + off + 18);
+        const uint32_t uncompressed_size32 = read_u32_le(data + off + 22);
         const uint16_t name_len = read_u16_le(data + off + 26);
         const uint16_t extra_len = read_u16_le(data + off + 28);
         const size_t name_off = off + 30;
         const size_t payload_off = name_off + name_len + extra_len;
+        uint64_t compressed_size64 = compressed_size32;
+        uint64_t uncompressed_size64 = uncompressed_size32;
+        if (compressed_size32 == 0xFFFFFFFFu || uncompressed_size32 == 0xFFFFFFFFu) {
+            bool found_zip64 = false;
+            size_t extra_off = name_off + name_len;
+            const size_t extra_end = extra_off + extra_len;
+            while (extra_off + 4 <= extra_end) {
+                const uint16_t field_id = read_u16_le(data + extra_off);
+                const uint16_t field_size = read_u16_le(data + extra_off + 2);
+                const size_t field_payload = extra_off + 4;
+                if (field_payload + field_size > extra_end) {
+                    throw std::runtime_error("truncated zip extra field in " + path);
+                }
+                if (field_id == 0x0001u) {
+                    found_zip64 = true;
+                    size_t zip64_off = field_payload;
+                    if (uncompressed_size32 == 0xFFFFFFFFu) {
+                        if (zip64_off + 8 > field_payload + field_size) {
+                            throw std::runtime_error("truncated zip64 uncompressed size in " + path);
+                        }
+                        uncompressed_size64 = read_u64_le(data + zip64_off);
+                        zip64_off += 8;
+                    }
+                    if (compressed_size32 == 0xFFFFFFFFu) {
+                        if (zip64_off + 8 > field_payload + field_size) {
+                            throw std::runtime_error("truncated zip64 compressed size in " + path);
+                        }
+                        compressed_size64 = read_u64_le(data + zip64_off);
+                    }
+                    break;
+                }
+                extra_off = field_payload + field_size;
+            }
+            if (!found_zip64) {
+                throw std::runtime_error("missing zip64 size extra field in " + path);
+            }
+        }
+        if (compressed_size64 > static_cast<uint64_t>(std::numeric_limits<size_t>::max()) ||
+            uncompressed_size64 > static_cast<uint64_t>(std::numeric_limits<size_t>::max())) {
+            throw std::runtime_error("npz entry is too large in " + path);
+        }
+        const size_t compressed_size = static_cast<size_t>(compressed_size64);
+        const size_t uncompressed_size = static_cast<size_t>(uncompressed_size64);
         if (payload_off > size || payload_off + compressed_size > size) {
             throw std::runtime_error("truncated npz entry in " + path);
         }
@@ -573,6 +639,260 @@ bool VieneuV3OnnxEngine::parse_voice_reserved_id(const std::string& voice_id, in
     return false;
 }
 
+bool VieneuV3OnnxEngine::resolve_voice_preset(
+    const std::string& voice_id,
+    VoicePreset& preset,
+    std::string& error) const {
+    preset = VoicePreset{};
+    if (voices_json_.empty()) {
+        return true;
+    }
+
+    try {
+        const auto root = nlohmann::json::parse(voices_json_);
+        if (!root.contains("presets") || !root.at("presets").is_object()) {
+            return true;
+        }
+
+        std::string selected = voice_id;
+        if (selected.empty() && root.contains("default_voice") && root.at("default_voice").is_string()) {
+            selected = root.at("default_voice").get<std::string>();
+        }
+        if (selected.empty()) {
+            return true;
+        }
+
+        const auto& presets = root.at("presets");
+        if (!presets.contains(selected)) {
+            error = "VieNeu v3 voice preset not found: " + selected;
+            return false;
+        }
+        const auto& item = presets.at(selected);
+        preset.found = true;
+        if (item.contains("reserved_id") && !item.at("reserved_id").is_null()) {
+            preset.has_reserved_id = true;
+            preset.reserved_id = item.at("reserved_id").get<int>();
+        }
+        if (item.contains("codes") && item.at("codes").is_array()) {
+            const auto& codes = item.at("codes");
+            for (const auto& row : codes) {
+                if (!row.is_array() || static_cast<int>(row.size()) != config_.n_vq) {
+                    error = "VieNeu v3 preset voice has invalid codes shape: " + selected;
+                    return false;
+                }
+                for (const auto& v : row) {
+                    preset.codes.push_back(v.get<int64_t>());
+                }
+            }
+        }
+        return true;
+    } catch (const std::exception& e) {
+        error = std::string("Failed to parse VieNeu v3 voices JSON: ") + e.what();
+        return false;
+    }
+}
+
+bool VieneuV3OnnxEngine::read_wav_file(const std::string& path, WavData& wav, std::string& error) const {
+    wav = WavData{};
+    try {
+        const std::string bytes = read_file_bytes(path);
+        const auto* data = reinterpret_cast<const uint8_t*>(bytes.data());
+        const size_t size = bytes.size();
+        if (size < 44 || std::memcmp(data, "RIFF", 4) != 0 || std::memcmp(data + 8, "WAVE", 4) != 0) {
+            error = "Reference audio must be a RIFF/WAVE file: " + path;
+            return false;
+        }
+
+        uint16_t audio_format = 0;
+        uint16_t channels = 0;
+        uint32_t sample_rate = 0;
+        uint16_t bits_per_sample = 0;
+        const uint8_t* pcm = nullptr;
+        size_t pcm_size = 0;
+        size_t off = 12;
+        while (off + 8 <= size) {
+            const char* id = reinterpret_cast<const char*>(data + off);
+            const uint32_t chunk_size = read_u32_le(data + off + 4);
+            const size_t payload = off + 8;
+            if (payload + chunk_size > size) {
+                error = "Truncated WAV chunk in reference audio: " + path;
+                return false;
+            }
+            if (std::memcmp(id, "fmt ", 4) == 0) {
+                if (chunk_size < 16) {
+                    error = "Invalid WAV fmt chunk in reference audio: " + path;
+                    return false;
+                }
+                audio_format = read_u16_le(data + payload);
+                channels = read_u16_le(data + payload + 2);
+                sample_rate = read_u32_le(data + payload + 4);
+                bits_per_sample = read_u16_le(data + payload + 14);
+            } else if (std::memcmp(id, "data", 4) == 0) {
+                pcm = data + payload;
+                pcm_size = chunk_size;
+            }
+            off = payload + chunk_size + (chunk_size & 1u);
+        }
+
+        if (!pcm || pcm_size == 0 || channels == 0 || sample_rate == 0 || bits_per_sample == 0) {
+            error = "Reference WAV is missing fmt/data chunks: " + path;
+            return false;
+        }
+        if (audio_format != 1 && audio_format != 3) {
+            error = "Reference WAV must be PCM or IEEE-float format: " + path;
+            return false;
+        }
+        const size_t bytes_per_sample = bits_per_sample / 8;
+        if (bytes_per_sample == 0 || pcm_size < bytes_per_sample * channels) {
+            error = "Reference WAV has invalid sample size: " + path;
+            return false;
+        }
+
+        const size_t frames = pcm_size / (bytes_per_sample * channels);
+        wav.sample_rate = static_cast<int>(sample_rate);
+        wav.channels = static_cast<int>(channels);
+        wav.samples.resize(frames * channels);
+        for (size_t i = 0; i < frames * channels; ++i) {
+            const uint8_t* p = pcm + i * bytes_per_sample;
+            float v = 0.0f;
+            if (audio_format == 3 && bits_per_sample == 32) {
+                std::memcpy(&v, p, sizeof(float));
+            } else if (audio_format == 1 && bits_per_sample == 16) {
+                v = static_cast<float>(read_i16_le(p)) / 32768.0f;
+            } else if (audio_format == 1 && bits_per_sample == 24) {
+                v = static_cast<float>(read_i24_le(p)) / 8388608.0f;
+            } else if (audio_format == 1 && bits_per_sample == 32) {
+                v = static_cast<float>(read_i32_le(p)) / 2147483648.0f;
+            } else if (audio_format == 1 && bits_per_sample == 8) {
+                v = (static_cast<float>(*p) - 128.0f) / 128.0f;
+            } else {
+                error = "Unsupported reference WAV sample format: " + path;
+                return false;
+            }
+            wav.samples[i] = std::clamp(v, -1.0f, 1.0f);
+        }
+        return true;
+    } catch (const std::exception& e) {
+        error = std::string("Failed to read reference WAV: ") + e.what();
+        return false;
+    }
+}
+
+bool VieneuV3OnnxEngine::encode_reference_audio(
+    const std::string& path,
+    std::vector<int64_t>& out_codes,
+    std::string& error) {
+    out_codes.clear();
+    WavData wav;
+    if (!read_wav_file(path, wav, error)) {
+        return false;
+    }
+
+    const int target_sr = sample_rate();
+    const int64_t in_frames = static_cast<int64_t>(wav.samples.size() / wav.channels);
+    const int64_t out_frames = wav.sample_rate == target_sr
+        ? in_frames
+        : static_cast<int64_t>(std::llround(static_cast<double>(in_frames) * target_sr / wav.sample_rate));
+    if (out_frames <= 0) {
+        error = "Reference WAV contains no samples: " + path;
+        return false;
+    }
+
+    std::vector<float> stereo(static_cast<size_t>(2 * out_frames), 0.0f);
+    for (int64_t i = 0; i < out_frames; ++i) {
+        const double src_pos = wav.sample_rate == target_sr
+            ? static_cast<double>(i)
+            : static_cast<double>(i) * wav.sample_rate / target_sr;
+        const int64_t i0 = (std::min)(static_cast<int64_t>(std::floor(src_pos)), in_frames - 1);
+        const int64_t i1 = (std::min)(i0 + 1, in_frames - 1);
+        const float frac = static_cast<float>(src_pos - static_cast<double>(i0));
+        for (int c = 0; c < 2; ++c) {
+            const int src_c = wav.channels == 1 ? 0 : (std::min)(c, wav.channels - 1);
+            const float a = wav.samples[static_cast<size_t>(i0 * wav.channels + src_c)];
+            const float b = wav.samples[static_cast<size_t>(i1 * wav.channels + src_c)];
+            stereo[static_cast<size_t>(c * out_frames + i)] = a + (b - a) * frac;
+        }
+    }
+
+    try {
+        if (!codec_encode_session_) {
+            if (!load_session(codec_encode_path_, codec_encode_session_, error)) {
+                return false;
+            }
+        }
+        auto mem = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);
+        const std::vector<std::string> input_names = session_input_names(*codec_encode_session_);
+        const std::vector<std::string> output_names = session_output_names(*codec_encode_session_);
+        if (input_names.size() != 2 || output_names.empty()) {
+            error = "MOSS codec encode ONNX signature mismatch: expected 2 inputs and at least 1 output.";
+            return false;
+        }
+
+        std::vector<int32_t> lengths = {static_cast<int32_t>(out_frames)};
+        std::vector<int64_t> wav_shape = {1, 2, out_frames};
+        std::vector<int64_t> len_shape = {1};
+        std::vector<Ort::Value> inputs;
+        inputs.emplace_back(Ort::Value::CreateTensor<float>(mem, stereo.data(), stereo.size(), wav_shape.data(), wav_shape.size()));
+        inputs.emplace_back(Ort::Value::CreateTensor<int32_t>(mem, lengths.data(), lengths.size(), len_shape.data(), len_shape.size()));
+        const std::vector<const char*> input_ptrs = name_ptrs(input_names);
+        const std::vector<const char*> output_ptrs = name_ptrs(output_names);
+        auto out = codec_encode_session_->Run(Ort::RunOptions{nullptr}, input_ptrs.data(), inputs.data(), inputs.size(), output_ptrs.data(), output_ptrs.size());
+        const std::vector<int64_t> shape = tensor_shape(out[0]);
+        if (shape.size() != 3) {
+            error = "MOSS codec encode returned unexpected rank.";
+            return false;
+        }
+
+        size_t count = 1;
+        for (int64_t dim : shape) {
+            count *= static_cast<size_t>(dim);
+        }
+        std::vector<int64_t> raw(count);
+        const auto type = out[0].GetTensorTypeAndShapeInfo().GetElementType();
+        if (type == ONNX_TENSOR_ELEMENT_DATA_TYPE_INT64) {
+            const int64_t* p = out[0].GetTensorData<int64_t>();
+            raw.assign(p, p + count);
+        } else if (type == ONNX_TENSOR_ELEMENT_DATA_TYPE_INT32) {
+            const int32_t* p = out[0].GetTensorData<int32_t>();
+            for (size_t i = 0; i < count; ++i) {
+                raw[i] = p[i];
+            }
+        } else {
+            error = "MOSS codec encode returned non-integer codes.";
+            return false;
+        }
+
+        if (shape[0] == 1 && shape[2] == config_.n_vq) {
+            out_codes = std::move(raw);
+        } else if (shape[0] == config_.n_vq && shape[1] == 1) {
+            const int64_t frames = shape[2];
+            out_codes.resize(static_cast<size_t>(frames * config_.n_vq));
+            for (int ch = 0; ch < config_.n_vq; ++ch) {
+                for (int64_t t = 0; t < frames; ++t) {
+                    out_codes[static_cast<size_t>(t * config_.n_vq + ch)] =
+                        raw[static_cast<size_t>(ch * frames + t)];
+                }
+            }
+        } else if (shape[0] == 1 && shape[1] == config_.n_vq) {
+            const int64_t frames = shape[2];
+            out_codes.resize(static_cast<size_t>(frames * config_.n_vq));
+            for (int ch = 0; ch < config_.n_vq; ++ch) {
+                for (int64_t t = 0; t < frames; ++t) {
+                    out_codes[static_cast<size_t>(t * config_.n_vq + ch)] =
+                        raw[static_cast<size_t>(ch * frames + t)];
+                }
+            }
+        } else {
+            error = "MOSS codec encode returned unsupported code shape.";
+            return false;
+        }
+        return !out_codes.empty();
+    } catch (const std::exception& e) {
+        error = std::string("MOSS codec encode failed: ") + e.what();
+        return false;
+    }
+}
+
 bool VieneuV3OnnxEngine::initialize(const VieneuV3OnnxInit& init, std::string& error) {
     initialized_ = false;
     env_.reset();
@@ -580,6 +900,7 @@ bool VieneuV3OnnxEngine::initialize(const VieneuV3OnnxInit& init, std::string& e
     decode_session_.reset();
     acoustic_session_.reset();
     codec_decode_session_.reset();
+    codec_encode_session_.reset();
     session_options_.reset();
     codec_encode_path_.clear();
     rng_.seed(std::random_device{}());
@@ -876,29 +1197,15 @@ std::string VieneuV3OnnxEngine::phonemize_for_v3(const std::string& text) const 
     return VieneuProfile::phonemize(text);
 }
 
-bool VieneuV3OnnxEngine::synthesize(const VieneuV3OnnxParams& params, std::vector<float>& out_audio, std::string& error) {
+bool VieneuV3OnnxEngine::synthesize_phonemes(
+    const std::string& phonemes,
+    const std::vector<int64_t>* ref_codes,
+    int leading_token,
+    const VieneuV3OnnxParams& params,
+    std::vector<float>& out_audio,
+    std::string& error) {
     out_audio.clear();
-    if (!initialized_) {
-        error = "VieNeu v3 ONNX engine is not initialized.";
-        return false;
-    }
-    if (params.text.empty()) {
-        error = "VieNeu v3 synthesis requires non-empty text.";
-        return false;
-    }
-    if (!params.ref_audio_path.empty()) {
-        error = "VieNeu v3 reference-audio cloning is not implemented in the native runtime yet.";
-        return false;
-    }
-
-    int leading_token = config_.emotion_0_token_id;
-    int reserved = 0;
-    if (parse_voice_reserved_id(params.voice_id, reserved)) {
-        leading_token = reserved;
-    }
-
-    const std::string phonemes = phonemize_for_v3(params.text);
-    const PromptRows rows = build_rows(phonemes, nullptr, leading_token);
+    const PromptRows rows = build_rows(phonemes, ref_codes, leading_token);
     std::vector<float> prompt_embeds = embed_rows(rows);
     std::vector<int64_t> prompt_shape = {1, rows.rows, config_.hidden_size};
     auto mem = Ort::MemoryInfo::CreateCpu(OrtArenaAllocator, OrtMemTypeDefault);
@@ -988,4 +1295,49 @@ bool VieneuV3OnnxEngine::synthesize(const VieneuV3OnnxParams& params, std::vecto
         error = std::string("VieNeu v3 synthesis failed: ") + e.what();
         return false;
     }
+}
+
+bool VieneuV3OnnxEngine::synthesize(const VieneuV3OnnxParams& params, std::vector<float>& out_audio, std::string& error) {
+    out_audio.clear();
+    if (!initialized_) {
+        error = "VieNeu v3 ONNX engine is not initialized.";
+        return false;
+    }
+    if (params.text.empty()) {
+        error = "VieNeu v3 synthesis requires non-empty text.";
+        return false;
+    }
+
+    int leading_token = config_.emotion_0_token_id;
+    std::vector<int64_t> ref_codes;
+    if (!params.ref_audio_path.empty()) {
+        if (!encode_reference_audio(params.ref_audio_path, ref_codes, error)) {
+            return false;
+        }
+    } else {
+        VoicePreset preset;
+        if (!resolve_voice_preset(params.voice_id, preset, error)) {
+            return false;
+        }
+        if (preset.has_reserved_id) {
+            leading_token = preset.reserved_id;
+        }
+        if (!preset.codes.empty()) {
+            ref_codes = std::move(preset.codes);
+        }
+    }
+
+    if (!ref_codes.empty() && ref_codes.size() % static_cast<size_t>(config_.n_vq) != 0) {
+        error = "VieNeu v3 reference codes are not divisible by n_vq.";
+        return false;
+    }
+
+    const std::string phonemes = phonemize_for_v3(params.text);
+    return synthesize_phonemes(
+        phonemes,
+        ref_codes.empty() ? nullptr : &ref_codes,
+        leading_token,
+        params,
+        out_audio,
+        error);
 }

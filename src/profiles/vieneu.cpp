@@ -5,6 +5,23 @@
 #include <algorithm>
 #include <sstream>
 #include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <fstream>
+#include <mutex>
+#include <unordered_map>
+
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 // UTF-8 Helper Functions
 static std::vector<uint32_t> utf8_to_cps(const std::string& str) {
@@ -143,6 +160,289 @@ static bool has_vietnamese_signal(const std::string& text) {
     return false;
 }
 
+static std::string getenv_string(const char* name) {
+    const char* value = std::getenv(name);
+    return value ? std::string(value) : std::string();
+}
+
+static bool file_exists_local(const std::string& path) {
+    if (path.empty()) {
+        return false;
+    }
+    std::ifstream fs(path, std::ios::binary);
+    return fs.good();
+}
+
+static std::string dirname_local(std::string path) {
+    const size_t pos = path.find_last_of("/\\");
+    if (pos == std::string::npos) {
+        return {};
+    }
+    return path.substr(0, pos);
+}
+
+static std::string join_path_local(const std::string& a, const std::string& b) {
+    if (a.empty()) {
+        return b;
+    }
+    const char last = a[a.size() - 1];
+    if (last == '/' || last == '\\') {
+        return a + b;
+    }
+#ifdef _WIN32
+    return a + "\\" + b;
+#else
+    return a + "/" + b;
+#endif
+}
+
+static std::string quote_shell_arg(const std::string& value) {
+#ifdef _WIN32
+    std::string out = "\"";
+    for (char c : value) {
+        if (c == '"') {
+            out += "\\\"";
+        } else {
+            out.push_back(c);
+        }
+    }
+    out.push_back('"');
+    return out;
+#else
+    std::string out = "'";
+    for (char c : value) {
+        if (c == '\'') {
+            out += "'\\''";
+        } else {
+            out.push_back(c);
+        }
+    }
+    out.push_back('\'');
+    return out;
+#endif
+}
+
+static std::string make_temp_text_path() {
+#ifdef _WIN32
+    char temp_dir[MAX_PATH + 1] = {};
+    const DWORD dir_len = GetTempPathA(MAX_PATH, temp_dir);
+    if (dir_len == 0 || dir_len > MAX_PATH) {
+        return {};
+    }
+    char temp_file[MAX_PATH + 1] = {};
+    if (GetTempFileNameA(temp_dir, "vng", 0, temp_file) == 0) {
+        return {};
+    }
+    return temp_file;
+#else
+    char tmpl[] = "/tmp/vieneu-g2p-XXXXXX";
+    const int fd = mkstemp(tmpl);
+    if (fd < 0) {
+        return {};
+    }
+    close(fd);
+    return tmpl;
+#endif
+}
+
+static std::vector<std::string> vieneu_repo_source_candidates() {
+    std::vector<std::string> out;
+    const std::string explicit_path = getenv_string("SLM_VIENEU_PYTHONPATH");
+    if (!explicit_path.empty()) {
+        out.push_back(explicit_path);
+    }
+    const std::string explicit_repo = getenv_string("SLM_VIENEU_REPO");
+    if (!explicit_repo.empty()) {
+        out.push_back(join_path_local(explicit_repo, "src"));
+    }
+    const std::string vieneu_repo = getenv_string("VIENEU_TTS_DIR");
+    if (!vieneu_repo.empty()) {
+        out.push_back(join_path_local(vieneu_repo, "src"));
+    }
+
+    const std::string source_file = __FILE__;
+    const std::string profile_dir = dirname_local(source_file);
+    const std::string src_dir = dirname_local(profile_dir);
+    const std::string project_dir = dirname_local(src_dir);
+    const std::string parent_dir = dirname_local(project_dir);
+    if (!parent_dir.empty()) {
+        out.push_back(join_path_local(join_path_local(parent_dir, "VieNeu-TTS"), "src"));
+    }
+
+    out.push_back(join_path_local("VieNeu-TTS", "src"));
+    out.push_back(join_path_local(join_path_local("..", "VieNeu-TTS"), "src"));
+    out.push_back(join_path_local(join_path_local(join_path_local("..", ".."), "VieNeu-TTS"), "src"));
+    return out;
+}
+
+static std::vector<std::string> vieneu_python_candidates() {
+    std::vector<std::string> out;
+    const std::string explicit_python = getenv_string("SLM_VIENEU_PYTHON");
+    if (!explicit_python.empty()) {
+        out.push_back(explicit_python);
+    }
+    const std::string explicit_python_alt = getenv_string("VIENEU_TTS_PYTHON");
+    if (!explicit_python_alt.empty()) {
+        out.push_back(explicit_python_alt);
+    }
+    const std::string venv = getenv_string("VIRTUAL_ENV");
+    if (!venv.empty()) {
+#ifdef _WIN32
+        out.push_back(join_path_local(join_path_local(venv, "Scripts"), "python.exe"));
+#else
+        out.push_back(join_path_local(join_path_local(venv, "bin"), "python"));
+#endif
+    }
+
+    const std::string source_file = __FILE__;
+    const std::string profile_dir = dirname_local(source_file);
+    const std::string src_dir = dirname_local(profile_dir);
+    const std::string project_dir = dirname_local(src_dir);
+    const std::string parent_dir = dirname_local(project_dir);
+    if (!parent_dir.empty()) {
+        const std::string vieneu_dir = join_path_local(parent_dir, "VieNeu-TTS");
+#ifdef _WIN32
+        out.push_back(join_path_local(join_path_local(join_path_local(vieneu_dir, ".venv"), "Scripts"), "python.exe"));
+#else
+        out.push_back(join_path_local(join_path_local(join_path_local(vieneu_dir, ".venv"), "bin"), "python"));
+#endif
+    }
+
+#ifdef _WIN32
+    out.push_back(join_path_local(join_path_local(join_path_local("VieNeu-TTS", ".venv"), "Scripts"), "python.exe"));
+    out.push_back(join_path_local(join_path_local(join_path_local(join_path_local("..", "VieNeu-TTS"), ".venv"), "Scripts"), "python.exe"));
+    out.push_back(join_path_local(join_path_local(join_path_local(join_path_local(join_path_local("..", ".."), "VieNeu-TTS"), ".venv"), "Scripts"), "python.exe"));
+    out.push_back("python");
+#else
+    out.push_back(join_path_local(join_path_local(join_path_local("VieNeu-TTS", ".venv"), "bin"), "python"));
+    out.push_back(join_path_local(join_path_local(join_path_local(join_path_local("..", "VieNeu-TTS"), ".venv"), "bin"), "python"));
+    out.push_back(join_path_local(join_path_local(join_path_local(join_path_local(join_path_local("..", ".."), "VieNeu-TTS"), ".venv"), "bin"), "python"));
+    out.push_back("python3");
+    out.push_back("python");
+#endif
+    return out;
+}
+
+static bool run_python_vieneu_phonemizer(const std::string& text, std::string& out) {
+    const bool debug = !getenv_string("SLM_VIENEU_PHONEMIZER_DEBUG").empty();
+    const std::string temp_path = make_temp_text_path();
+    if (temp_path.empty()) {
+        if (debug) {
+            std::cerr << "[VieNeu phonemizer] failed to allocate temp file\n";
+        }
+        return false;
+    }
+    {
+        std::ofstream fs(temp_path, std::ios::binary | std::ios::trunc);
+        if (!fs.is_open()) {
+            if (debug) {
+                std::cerr << "[VieNeu phonemizer] failed to open temp file: " << temp_path << "\n";
+            }
+            std::remove(temp_path.c_str());
+            return false;
+        }
+        fs.write(text.data(), static_cast<std::streamsize>(text.size()));
+    }
+
+    const std::string script =
+        "import sys;"
+        "sys.stdout.reconfigure(encoding='utf-8');"
+        "[sys.path.insert(0,p) for p in sys.argv[2:] if p];"
+        "from vieneu_utils.phonemize_text import phonemize_text_with_emotions as p;"
+        "sys.stdout.write(p(open(sys.argv[1],encoding='utf-8').read()))";
+
+    const std::vector<std::string> source_paths = vieneu_repo_source_candidates();
+    for (const std::string& python : vieneu_python_candidates()) {
+        if (python != "python" && python != "python3" && !file_exists_local(python)) {
+            if (debug) {
+                std::cerr << "[VieNeu phonemizer] missing python candidate: " << python << "\n";
+            }
+            continue;
+        }
+#ifdef _WIN32
+        std::string command = "call " + quote_shell_arg(python) + " -X utf8 -c " +
+            quote_shell_arg(script) + " " + quote_shell_arg(temp_path);
+#else
+        std::string command = quote_shell_arg(python) + " -X utf8 -c " +
+            quote_shell_arg(script) + " " + quote_shell_arg(temp_path);
+#endif
+        for (const std::string& source_path : source_paths) {
+            command += " " + quote_shell_arg(source_path);
+        }
+#ifdef _WIN32
+        command += debug ? " 2>&1" : " 2>NUL";
+        FILE* pipe = _popen(command.c_str(), "r");
+#else
+        command += debug ? " 2>&1" : " 2>/dev/null";
+        FILE* pipe = popen(command.c_str(), "r");
+#endif
+        if (!pipe) {
+            if (debug) {
+                std::cerr << "[VieNeu phonemizer] popen failed for: " << command << "\n";
+            }
+            continue;
+        }
+        std::string result;
+        char buffer[4096];
+        while (true) {
+            const size_t n = std::fread(buffer, 1, sizeof(buffer), pipe);
+            if (n > 0) {
+                result.append(buffer, n);
+            }
+            if (n < sizeof(buffer)) {
+                break;
+            }
+        }
+#ifdef _WIN32
+        const int rc = _pclose(pipe);
+#else
+        const int rc = pclose(pipe);
+#endif
+        if (debug) {
+            std::cerr << "[VieNeu phonemizer] candidate rc=" << rc
+                      << " python=" << python
+                      << " bytes=" << result.size() << "\n";
+            if (!result.empty()) {
+                std::cerr << "[VieNeu phonemizer] output=" << result << "\n";
+            }
+        }
+        if (rc == 0) {
+            std::remove(temp_path.c_str());
+            out = std::move(result);
+            return true;
+        }
+    }
+
+    std::remove(temp_path.c_str());
+    return false;
+}
+
+static bool try_python_vieneu_phonemizer(const std::string& text, std::string& out) {
+    const std::string disabled = getenv_string("SLM_VIENEU_PYTHON_PHONEMIZER");
+    if (disabled == "0" || disabled == "false" || disabled == "FALSE" || disabled == "off" || disabled == "OFF") {
+        return false;
+    }
+
+    static std::mutex mutex;
+    static std::unordered_map<std::string, std::string> cache;
+    static bool known_unavailable = false;
+    std::lock_guard<std::mutex> lock(mutex);
+    auto it = cache.find(text);
+    if (it != cache.end()) {
+        out = it->second;
+        return true;
+    }
+    if (known_unavailable) {
+        return false;
+    }
+    if (run_python_vieneu_phonemizer(text, out)) {
+        cache.emplace(text, out);
+        return true;
+    }
+    known_unavailable = true;
+    return false;
+}
+
 std::string VieneuProfile::format_prompt(const std::string& phonemes) {
     return "<|speaker_16|><|TEXT_PROMPT_START|>" + phonemes + "<|TEXT_PROMPT_END|><|SPEECH_GENERATION_START|>";
 }
@@ -159,6 +459,11 @@ std::vector<int64_t> VieneuProfile::extract_speech_ids(const std::string& genera
 }
 
 std::string VieneuProfile::phonemize(const std::string& text) {
+    std::string python_phonemes;
+    if (try_python_vieneu_phonemizer(text, python_phonemes)) {
+        return python_phonemes;
+    }
+
     std::stringstream ss;
     std::string word = "";
     const bool vietnamese_context = has_vietnamese_signal(text);
@@ -255,6 +560,19 @@ std::string VieneuProfile::phonemize(const std::string& text) {
         // Process rime into vowel and coda
         std::string ipa_vowel = "";
         std::string ipa_coda = "";
+        auto map_coda = [](const std::string& rem) -> std::string {
+            if (rem == "ng") return "\xc5\x8b";
+            if (rem == "nh") return "\xc9\xb2";
+            if (rem == "ch") return "t\xca\x83";
+            if (rem == "c") return "k";
+            if (rem == "t") return "t";
+            if (rem == "p") return "p";
+            if (rem == "m") return "m";
+            if (rem == "n") return "n";
+            if (rem == "o" || rem == "u") return "w";
+            if (rem == "i" || rem == "y") return "j";
+            return "";
+        };
 
         // Standard rime mappings
         if (rime.rfind("ươ", 0) == 0 || rime.rfind("\xc6\xb0\xc6\xa1", 0) == 0) {
@@ -266,6 +584,8 @@ std::string VieneuProfile::phonemize(const std::string& text) {
             else if (rem == "p") ipa_coda = "p";
             else if (rem == "t") ipa_coda = "t";
             else if (rem == "c") ipa_coda = "k";
+            else if (rem == "i" || rem == "y") ipa_coda = "j";
+            else if (rem == "o" || rem == "u") ipa_coda = "w";
         }
         else if (rime.rfind("iê", 0) == 0 || rime.rfind("yê", 0) == 0 || rime.rfind("ia", 0) == 0 || rime.rfind("ya", 0) == 0) {
             ipa_vowel = "i\xc9\x9b"; // iɛ
@@ -277,6 +597,8 @@ std::string VieneuProfile::phonemize(const std::string& text) {
             else if (rem == "p") ipa_coda = "p";
             else if (rem == "t") ipa_coda = "t";
             else if (rem == "c") ipa_coda = "k";
+            else if (rem == "i" || rem == "y") ipa_coda = "j";
+            else if (rem == "o" || rem == "u") ipa_coda = "w";
         }
         else if (rime.rfind("uô", 0) == 0 || rime.rfind("ua", 0) == 0) {
             ipa_vowel = "u\xc9\x99"; // uə
@@ -288,6 +610,8 @@ std::string VieneuProfile::phonemize(const std::string& text) {
             else if (rem == "p") ipa_coda = "p";
             else if (rem == "t") ipa_coda = "t";
             else if (rem == "c") ipa_coda = "k";
+            else if (rem == "i" || rem == "y") ipa_coda = "j";
+            else if (rem == "o" || rem == "u") ipa_coda = "w";
         }
         else {
             // General vowel parsing
@@ -330,16 +654,7 @@ std::string VieneuProfile::phonemize(const std::string& text) {
             if (!c_sp.empty()) {
                 ipa_coda = c_sp;
             } else {
-                if (rime == "ng") ipa_coda = "\xc5\x8b";
-                else if (rime == "nh") ipa_coda = "\xc9\xb2";
-                else if (rime == "ch") ipa_coda = "t\xca\x83";
-                else if (rime == "c") ipa_coda = "k";
-                else if (rime == "t") ipa_coda = "t";
-                else if (rime == "p") ipa_coda = "p";
-                else if (rime == "m") ipa_coda = "m";
-                else if (rime == "n") ipa_coda = "n";
-                else if (rime == "o" || rime == "u") ipa_coda = "w";
-                else if (rime == "i" || rime == "y") ipa_coda = "j";
+                ipa_coda = map_coda(rime);
             }
         }
 

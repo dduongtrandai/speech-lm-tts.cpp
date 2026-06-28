@@ -79,6 +79,19 @@ private:
         std::vector<int64_t> data;
     };
 
+    struct WavData {
+        int sample_rate = 0;
+        int channels = 0;
+        std::vector<float> samples; // interleaved
+    };
+
+    struct VoicePreset {
+        bool found = false;
+        bool has_reserved_id = false;
+        int reserved_id = 0;
+        std::vector<int64_t> codes;
+    };
+
     struct ByteBpeTokenizer {
         bool load(const std::string& path, std::string& error);
         std::vector<int64_t> encode(const std::string& text) const;
@@ -98,9 +111,18 @@ private:
     bool load_config(const std::string& path, std::string& error);
     bool load_heads_npz(const std::string& path, std::string& error);
     bool parse_voice_reserved_id(const std::string& voice_id, int& reserved_id) const;
+    bool resolve_voice_preset(const std::string& voice_id, VoicePreset& preset, std::string& error) const;
+    bool read_wav_file(const std::string& path, WavData& wav, std::string& error) const;
+    bool encode_reference_audio(const std::string& path, std::vector<int64_t>& out_codes, std::string& error);
 
     PromptRows build_rows(const std::string& phonemes, const std::vector<int64_t>* ref_codes, int leading_token) const;
     std::vector<float> embed_rows(const PromptRows& rows) const;
+    bool synthesize_phonemes(const std::string& phonemes,
+                             const std::vector<int64_t>* ref_codes,
+                             int leading_token,
+                             const VieneuV3OnnxParams& params,
+                             std::vector<float>& out_audio,
+                             std::string& error);
     bool acoustic_frame(const std::vector<float>& h,
                         float temperature,
                         int top_k,
@@ -125,6 +147,7 @@ private:
     std::unique_ptr<Ort::Session> decode_session_;
     std::unique_ptr<Ort::Session> acoustic_session_;
     std::unique_ptr<Ort::Session> codec_decode_session_;
+    std::unique_ptr<Ort::Session> codec_encode_session_;
     std::string codec_encode_path_;
     std::string voices_json_;
     Config config_;
