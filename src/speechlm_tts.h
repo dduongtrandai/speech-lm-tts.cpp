@@ -56,6 +56,32 @@ struct slm_tts_params {
     bool          apply_watermark;
 };
 
+struct slm_init_params_v2 {
+    int          abi_version;
+    const char * profile;
+    const char * model_dir;
+    const char * onnx_dir;
+    const char * codec_dir;
+    const char * config_path;
+    const char * tokenizer_path;
+    const char * voices_json_path;
+    int          n_threads;
+};
+
+struct slm_tts_params_v2 {
+    int          abi_version;
+    const char * text;
+    const char * voice_id;
+    const char * ref_audio_path;
+    float        temperature;
+    int          top_k;
+    float        top_p;
+    int          max_new_frames;
+    float        repetition_penalty;
+    int          max_chars;
+    bool         apply_watermark;
+};
+
 SLM_API const char * slm_version(void);
 SLM_API const char * slm_last_error(void);
 
@@ -67,6 +93,11 @@ SLM_API void slm_free(struct slm_context * slm);
 
 SLM_API void slm_tts_default_params(struct slm_tts_params * p);
 SLM_API int slm_synthesize(struct slm_context * slm, const struct slm_tts_params * params, struct slm_audio * out);
+
+SLM_API void slm_init_v2_default_params(struct slm_init_params_v2 * p);
+SLM_API struct slm_context * slm_init_v2(const struct slm_init_params_v2 * params);
+SLM_API void slm_tts_v2_default_params(struct slm_tts_params_v2 * p);
+SLM_API int slm_synthesize_v2(struct slm_context * slm, const struct slm_tts_params_v2 * params, struct slm_audio * out);
 
 SLM_API int slm_encode_reference(struct slm_context * slm, const char * ref_audio_path, float * out_embedding_128);
 SLM_API int slm_list_preset_voices(struct slm_context * slm, char * out_json, int max_len);

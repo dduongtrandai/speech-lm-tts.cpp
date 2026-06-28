@@ -6,6 +6,8 @@ A native, high-performance C++ inference engine for Speech Language Models (Spee
 
 It is designed to support speech language model architectures like **VieNeu-TTS v2 Turbo** (utilizing GGUF Speech LM + ONNX Speaker Encoder + ONNX Neural Decoder) out of the box.
 
+The ABI also exposes an experimental `vieneu-v3-onnx` profile for VieNeu-TTS v3 Turbo. This path validates and loads the local ONNX assets required by the upstream CPU runtime, but the native ByteLevel-BPE tokenizer, NPZ embedding/head loader, and autoregressive generation loop are still under active implementation.
+
 ---
 
 ## Key Features

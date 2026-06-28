@@ -58,6 +58,7 @@ add_library(speechlm-tts-core STATIC
     src/codecs/neucodec_onnx.cpp
     src/profiles/neutts_air.cpp
     src/profiles/vieneu.cpp
+    src/profiles/vieneu_v3_onnx.cpp
 )
 
 target_include_directories(speechlm-tts-core PUBLIC

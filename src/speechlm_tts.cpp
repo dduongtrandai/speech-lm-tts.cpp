@@ -3,6 +3,7 @@
 #include "codecs/neucodec_onnx.h"
 #include "profiles/neutts_air.h"
 #include "profiles/vieneu.h"
+#include "profiles/vieneu_v3_onnx.h"
 #include <string>
 #include <vector>
 #include <memory>
@@ -103,7 +104,8 @@ static bool set_first_available_voice(struct slm_context * slm);
 
 enum class SlmProfile {
     NEUTTS_AIR_V1,
-    VIENEU_V2_TURBO
+    VIENEU_V2_TURBO,
+    VIENEU_V3_ONNX
 };
 
 struct slm_context {
@@ -114,6 +116,7 @@ struct slm_context {
     std::unique_ptr<LlamaBackend> llama;
     std::unique_ptr<NeuCodecOnnx> codec_decoder;
     std::unique_ptr<NeuCodecOnnx> codec_encoder;
+    std::unique_ptr<VieneuV3OnnxEngine> vieneu_v3;
 
     std::string voices_json = "";
 };
@@ -170,6 +173,20 @@ SLM_API void slm_init_default_params(struct slm_init_params * p) {
         p->n_gpu_layers = 0;
         p->flash_attn = false;
         p->mlock = true;
+    }
+}
+
+SLM_API void slm_init_v2_default_params(struct slm_init_params_v2 * p) {
+    if (p) {
+        p->abi_version = 2;
+        p->profile = nullptr;
+        p->model_dir = nullptr;
+        p->onnx_dir = nullptr;
+        p->codec_dir = nullptr;
+        p->config_path = nullptr;
+        p->tokenizer_path = nullptr;
+        p->voices_json_path = nullptr;
+        p->n_threads = 4;
     }
 }
 
@@ -247,6 +264,40 @@ SLM_API struct slm_context * slm_init(const struct slm_init_params * params) {
     return ctx.release();
 }
 
+SLM_API struct slm_context * slm_init_v2(const struct slm_init_params_v2 * params) {
+    if (!params) {
+        set_last_error("Invalid initialization parameters: params is required.");
+        return nullptr;
+    }
+
+    const std::string profile = params->profile ? params->profile : "";
+    if (profile != "vieneu-v3-onnx") {
+        set_last_error("Unsupported ABI v2 profile: " + profile);
+        return nullptr;
+    }
+
+    auto ctx = std::make_unique<slm_context>();
+    ctx->profile = SlmProfile::VIENEU_V3_ONNX;
+    ctx->vieneu_v3 = std::make_unique<VieneuV3OnnxEngine>();
+
+    VieneuV3OnnxInit init;
+    init.model_dir = params->model_dir ? params->model_dir : "";
+    init.onnx_dir = params->onnx_dir ? params->onnx_dir : "";
+    init.codec_dir = params->codec_dir ? params->codec_dir : "";
+    init.config_path = params->config_path ? params->config_path : "";
+    init.tokenizer_path = params->tokenizer_path ? params->tokenizer_path : "";
+    init.voices_json_path = params->voices_json_path ? params->voices_json_path : "";
+    init.n_threads = params->n_threads > 0 ? params->n_threads : 4;
+
+    std::string error;
+    if (!ctx->vieneu_v3->initialize(init, error)) {
+        set_last_error(error);
+        return nullptr;
+    }
+    ctx->voices_json = ctx->vieneu_v3->voices_json();
+    return ctx.release();
+}
+
 SLM_API void slm_free(struct slm_context * slm) {
     if (slm) {
         delete slm;
@@ -265,6 +316,22 @@ SLM_API void slm_tts_default_params(struct slm_tts_params * p) {
         p->max_tokens = 2048;
         p->skip_normalize = false;
         p->skip_phonemize = false;
+        p->apply_watermark = true;
+    }
+}
+
+SLM_API void slm_tts_v2_default_params(struct slm_tts_params_v2 * p) {
+    if (p) {
+        p->abi_version = 2;
+        p->text = nullptr;
+        p->voice_id = nullptr;
+        p->ref_audio_path = nullptr;
+        p->temperature = 0.8f;
+        p->top_k = 25;
+        p->top_p = 0.95f;
+        p->max_new_frames = 300;
+        p->repetition_penalty = 1.2f;
+        p->max_chars = 384;
         p->apply_watermark = true;
     }
 }
@@ -339,6 +406,52 @@ static int slm_synthesize_impl(struct slm_context * slm, const struct slm_tts_pa
     return 0;
 }
 
+static int slm_synthesize_v2_impl(struct slm_context * slm, const struct slm_tts_params_v2 * params, struct slm_audio * out) {
+    if (!slm || !params || !params->text || !out) {
+        set_last_error("Invalid synthesize_v2 arguments: context, params, text, and out are required.");
+        return -1;
+    }
+    if (slm->profile != SlmProfile::VIENEU_V3_ONNX || !slm->vieneu_v3) {
+        set_last_error("slm_synthesize_v2 is only supported for the vieneu-v3-onnx profile.");
+        return -1;
+    }
+
+    VieneuV3OnnxParams v3_params;
+    v3_params.text = params->text ? params->text : "";
+    v3_params.voice_id = params->voice_id ? params->voice_id : "";
+    v3_params.ref_audio_path = params->ref_audio_path ? params->ref_audio_path : "";
+    v3_params.temperature = params->temperature;
+    v3_params.top_k = params->top_k;
+    v3_params.top_p = params->top_p;
+    v3_params.max_new_frames = params->max_new_frames;
+    v3_params.repetition_penalty = params->repetition_penalty;
+    v3_params.max_chars = params->max_chars;
+    v3_params.apply_watermark = params->apply_watermark;
+
+    std::vector<float> out_audio;
+    std::string error;
+    if (!slm->vieneu_v3->synthesize(v3_params, out_audio, error)) {
+        set_last_error(error);
+        return -1;
+    }
+    if (out_audio.empty()) {
+        set_last_error("VieNeu v3 synthesis produced empty audio.");
+        return -1;
+    }
+
+    normalize_output_level(out_audio);
+    out->samples = (float*)malloc(out_audio.size() * sizeof(float));
+    if (!out->samples) {
+        set_last_error("Memory allocation failed for audio output buffer.");
+        return -1;
+    }
+    std::copy(out_audio.begin(), out_audio.end(), out->samples);
+    out->n_samples = (int)out_audio.size();
+    out->sample_rate = slm->vieneu_v3->sample_rate();
+    out->channels = 1;
+    return 0;
+}
+
 static void clear_audio_output(struct slm_audio * out) {
     if (!out) {
         return;
@@ -370,9 +483,28 @@ SLM_API int slm_synthesize(struct slm_context * slm, const struct slm_tts_params
     return slm_synthesize_cpp_guard(slm, params, out);
 }
 
+SLM_API int slm_synthesize_v2(struct slm_context * slm, const struct slm_tts_params_v2 * params, struct slm_audio * out) {
+    try {
+        return slm_synthesize_v2_impl(slm, params, out);
+    } catch (const std::exception& e) {
+        clear_audio_output(out);
+        set_last_error(std::string("Unhandled C++ exception during ABI v2 synthesis: ") + e.what());
+        return -1;
+    } catch (...) {
+        clear_audio_output(out);
+        set_last_error("Unhandled unknown C++ exception during ABI v2 synthesis.");
+        return -1;
+    }
+}
+
 SLM_API int slm_encode_reference(struct slm_context * slm, const char * ref_audio_path, float * out_embedding_128) {
     if (!slm || !ref_audio_path || !out_embedding_128) {
         set_last_error("Invalid encode_reference arguments.");
+        return -1;
+    }
+
+    if (slm->profile == SlmProfile::VIENEU_V3_ONNX) {
+        set_last_error("slm_encode_reference returns a 128-dimensional v2 embedding and is not supported for VieNeu v3. Use slm_synthesize_v2 with ref_audio_path.");
         return -1;
     }
 
