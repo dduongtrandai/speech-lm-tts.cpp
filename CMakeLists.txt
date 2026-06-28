@@ -64,6 +64,7 @@ add_library(speechlm-tts-core STATIC
 target_include_directories(speechlm-tts-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/src
     ${CMAKE_CURRENT_SOURCE_DIR}
+    ${SLM_LLAMA_DIR}/vendor
 )
 
 target_link_libraries(speechlm-tts-core PUBLIC

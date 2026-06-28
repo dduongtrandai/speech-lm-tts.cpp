@@ -2,7 +2,11 @@
 #define VIENEU_V3_ONNX_H
 
 #include <memory>
+#include <mutex>
+#include <random>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include "onnxruntime_cxx_api.h"
@@ -39,6 +43,51 @@ public:
     int sample_rate() const { return 48000; }
 
 private:
+    struct Tensor2D {
+        int64_t rows = 0;
+        int64_t cols = 0;
+        std::vector<float> data;
+    };
+
+    struct Tensor3D {
+        int64_t dim0 = 0;
+        int64_t dim1 = 0;
+        int64_t dim2 = 0;
+        std::vector<float> data;
+    };
+
+    struct Config {
+        int n_vq = 16;
+        int hidden_size = 768;
+        int num_hidden_layers = 12;
+        int audio_pad_token_id = 1024;
+        int text_prompt_start_token_id = 3;
+        int text_prompt_end_token_id = 4;
+        int speech_generation_start_token_id = 5;
+        int speech_generation_end_token_id = 6;
+        int audio_ref_slot_token_id = 7;
+        int emotion_0_token_id = 8;
+        int emotion_4_token_id = 12;
+        int text_vocab_size = 419;
+        int audio_vocab_size = 1024;
+        int local_num_attention_heads = 8;
+    };
+
+    struct PromptRows {
+        int64_t rows = 0;
+        int64_t cols = 0;
+        std::vector<int64_t> data;
+    };
+
+    struct ByteBpeTokenizer {
+        bool load(const std::string& path, std::string& error);
+        std::vector<int64_t> encode(const std::string& text) const;
+
+        std::unordered_map<std::string, int64_t> vocab;
+        std::unordered_map<std::string, int> merge_ranks;
+        int64_t unk_id = 43;
+    };
+
     static std::string join_path(const std::string& dir, const std::string& name);
     static bool file_exists(const std::string& path);
     static bool read_text_file(const std::string& path, std::string& out);
@@ -46,6 +95,29 @@ private:
     bool load_session(const std::string& path, std::unique_ptr<Ort::Session>& session, std::string& error);
     bool validate_assets(const VieneuV3OnnxInit& init, std::string& error);
     bool load_voices(const std::string& voices_path, std::string& error);
+    bool load_config(const std::string& path, std::string& error);
+    bool load_heads_npz(const std::string& path, std::string& error);
+    bool parse_voice_reserved_id(const std::string& voice_id, int& reserved_id) const;
+
+    PromptRows build_rows(const std::string& phonemes, const std::vector<int64_t>* ref_codes, int leading_token) const;
+    std::vector<float> embed_rows(const PromptRows& rows) const;
+    bool acoustic_frame(const std::vector<float>& h,
+                        float temperature,
+                        int top_k,
+                        float top_p,
+                        float repetition_penalty,
+                        std::vector<std::unordered_set<int>>& history,
+                        std::vector<int64_t>& codes,
+                        bool& eos,
+                        std::string& error);
+    int64_t sample_logits(std::vector<float> logits,
+                          float temperature,
+                          int top_k,
+                          float top_p,
+                          float repetition_penalty,
+                          const std::unordered_set<int>* previous);
+    bool decode_codes(const std::vector<int64_t>& frames, int64_t frame_count, std::vector<float>& out_audio, std::string& error);
+    std::string phonemize_for_v3(const std::string& text) const;
 
     std::shared_ptr<Ort::Env> env_;
     std::unique_ptr<Ort::SessionOptions> session_options_;
@@ -55,6 +127,15 @@ private:
     std::unique_ptr<Ort::Session> codec_decode_session_;
     std::string codec_encode_path_;
     std::string voices_json_;
+    Config config_;
+    Tensor2D text_emb_;
+    Tensor3D audio_emb_;
+    ByteBpeTokenizer tokenizer_;
+    std::string model_dir_;
+    std::string onnx_dir_;
+    std::string codec_dir_;
+    std::mutex run_mutex_;
+    std::mt19937 rng_;
     bool initialized_ = false;
 };
 
